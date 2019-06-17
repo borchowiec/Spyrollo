@@ -1,16 +1,16 @@
 package mainView;
 
-import com.sun.prism.paint.Color;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 
+import java.util.List;
 import java.util.Random;
 
 public class Layout {
-    public static HBox getAlcoholPanel() {
+    public static HBox getAlcoholPanel(Liquid liquid) {
         HBox panel = new HBox();
 
         TextField name = new TextField("Alkohol");
@@ -31,18 +31,30 @@ public class Layout {
         save.getStyleClass().add("saveBtn");
         delete.getStyleClass().add("deleteBtn");
 
-        amount.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Short.MAX_VALUE, 0, 100));
+        amount.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Short.MAX_VALUE, 100, 100));
         percentage.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0));
         amount.setEditable(true);
         percentage.setEditable(true);
 
-        color.setStyle("-fx-background-color: " + getRandomColor());
+        String bgColor = getRandomColor();
+        color.setStyle("-fx-background-color: " + bgColor);
+
+        liquid.setName(name.getText());
+        liquid.setAmount(amount.getValue());
+        liquid.setPercent(percentage.getValue());
+        liquid.setColor(bgColor);
+        amount.valueProperty().addListener((observable, oldValue, newValue) -> {
+            liquid.setAmount(newValue);
+        });
+        percentage.valueProperty().addListener((observable, oldValue, newValue) -> {
+            liquid.setPercent(newValue);
+        });
 
         panel.getChildren().addAll(name, amount, new Label("ml"), percentage, new Label("%"), color, save, delete);
         return panel;
     }
 
-    public static HBox getOtherPanel() {
+    public static HBox getOtherPanel(Liquid liquid) {
         HBox panel = new HBox();
 
         TextField name = new TextField("Napój");
@@ -61,10 +73,19 @@ public class Layout {
         save.getStyleClass().add("saveBtn");
         delete.getStyleClass().add("deleteBtn");
 
-        amount.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Short.MAX_VALUE, 0, 100));
+        amount.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Short.MAX_VALUE, 100, 100));
         amount.setEditable(true);
 
-        color.setStyle("-fx-background-color: " + getRandomColor());
+        String bgColor = getRandomColor();
+        color.setStyle("-fx-background-color: " + bgColor);
+
+        liquid.setName(name.getText());
+        liquid.setAmount(amount.getValue());
+        liquid.setPercent(0);
+        liquid.setColor(bgColor);
+        amount.valueProperty().addListener((observable, oldValue, newValue) -> {
+            liquid.setAmount(newValue);
+        });
 
         panel.getChildren().addAll(name, amount, new Label("ml"), color, save, delete);
         return panel;
