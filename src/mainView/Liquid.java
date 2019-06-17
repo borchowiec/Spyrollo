@@ -2,9 +2,11 @@ package mainView;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 class Liquid {
-    private String name;
+    private StringProperty name;
     private String color;
     private IntegerProperty amount;
     private IntegerProperty percent;
@@ -15,18 +17,22 @@ class Liquid {
     }
 
     public Liquid(String name, int amount, int percent, String color) {
-        this.name = name;
+        this.name = new SimpleStringProperty(name);
         this.amount = new SimpleIntegerProperty(amount);
         this.percent = new SimpleIntegerProperty(percent);
         this.color = color;
     }
 
     public String getName() {
+        return name.get();
+    }
+
+    public StringProperty nameProperty() {
         return name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name.set(name);
     }
 
     public int getAmount() {

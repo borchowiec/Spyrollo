@@ -1,12 +1,9 @@
 package mainView;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 
-import java.util.List;
 import java.util.Random;
 
 public class Layout {
@@ -43,12 +40,9 @@ public class Layout {
         liquid.setAmount(amount.getValue());
         liquid.setPercent(percentage.getValue());
         liquid.setColor(bgColor);
-        amount.valueProperty().addListener((observable, oldValue, newValue) -> {
-            liquid.setAmount(newValue);
-        });
-        percentage.valueProperty().addListener((observable, oldValue, newValue) -> {
-            liquid.setPercent(newValue);
-        });
+        amount.valueProperty().addListener((observable, oldValue, newValue) -> liquid.setAmount(newValue));
+        percentage.valueProperty().addListener((observable, oldValue, newValue) -> liquid.setPercent(newValue));
+        name.textProperty().addListener((observable, oldValue, newValue) -> liquid.setName(newValue));
 
         panel.getChildren().addAll(name, amount, new Label("ml"), percentage, new Label("%"), color, save, delete);
         return panel;
@@ -83,9 +77,8 @@ public class Layout {
         liquid.setAmount(amount.getValue());
         liquid.setPercent(0);
         liquid.setColor(bgColor);
-        amount.valueProperty().addListener((observable, oldValue, newValue) -> {
-            liquid.setAmount(newValue);
-        });
+        amount.valueProperty().addListener((observable, oldValue, newValue) -> liquid.setAmount(newValue));
+        name.textProperty().addListener((observable, oldValue, newValue) -> liquid.setName(newValue));
 
         panel.getChildren().addAll(name, amount, new Label("ml"), color, save, delete);
         return panel;
