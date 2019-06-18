@@ -1,8 +1,12 @@
 package mainView;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -12,11 +16,18 @@ public class Controller {
     public VBox mixPanel;
     public Label amountLabel;
     public Label percentageLabel;
+    public VBox liquidsList;
     @FXML
     private VBox mainContainer;
 
     private List<Liquid> liquids = new LinkedList<>();
     private double amountOfLiquids = 0;
+
+    private JsonHandler jsonHandler;
+
+    public Controller() {
+        jsonHandler = new JsonHandler();
+    }
 
     private void setUpElement(Liquid liquid, HBox panel) {
         liquids.add(liquid);
@@ -41,12 +52,27 @@ public class Controller {
         Liquid liquid = new Liquid();
         HBox panel = Layout.getAlcoholPanel(liquid);
         liquid.percentProperty().addListener((observable, oldValue, newValue) -> refreshInfo());
+        panel.lookup(".saveBtn").setOnMouseClicked(event -> {
+            liquidsList.getChildren().add(Layout.getAlcoholListElement(liquid.getName(), liquid.getPercent()));
+            jsonHandler.addAlcohol(
+                    ((TextField)panel.lookup(".nameInput")).getText(),
+                    (int) ((Spinner)panel.lookup(".percentageSpinner")).getValue(),
+                    Layout.toRGB((Color) ((Button)panel.lookup(".colorBtn")).getBackground().getFills().get(0).getFill())
+            );
+        });
         setUpElement(liquid, panel);
     }
 
     public void addOther() {
         Liquid liquid = new Liquid();
         HBox panel = Layout.getOtherPanel(liquid);
+        panel.lookup(".saveBtn").setOnMouseClicked(event -> {
+            liquidsList.getChildren().add(Layout.getOtherListElement(liquid.getName()));
+            jsonHandler.addOther(
+                    ((TextField)panel.lookup(".nameInput")).getText(),
+                    Layout.toRGB((Color) ((Button)panel.lookup(".colorBtn")).getBackground().getFills().get(0).getFill())
+            );
+        });
         setUpElement(liquid, panel);
     }
 

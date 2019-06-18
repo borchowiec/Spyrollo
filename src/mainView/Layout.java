@@ -1,13 +1,18 @@
 package mainView;
 
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 
-import java.lang.ref.Reference;
 import java.util.Random;
 
 public class Layout {
+    public static final int ALCOHOL = 0;
+    public static final int OTHER = 1;
+    public static final int INFO = 2;
+
     public static HBox getAlcoholPanel(Liquid liquid) {
         HBox panel = new HBox();
 
@@ -99,8 +104,58 @@ public class Layout {
         return panel;
     }
 
+    public static HBox getAlcoholListElement(String name, int percents) {
+        HBox element = new HBox();
+
+        Label nameLabel = new Label(name + " " + percents+"%");
+        Button delete = new Button("Usuń");
+
+        nameLabel.setStyle("-fx-pref-width: 1000px");
+        delete.getStyleClass().add("deleteBtn");
+
+        element.getChildren().addAll(nameLabel, delete);
+        element.setAlignment(Pos.CENTER);
+        return element;
+    }
+
+    public static HBox getOtherListElement(String name) {
+        HBox element = new HBox();
+
+        Label nameLabel = new Label(name);
+        Button delete = new Button("Usuń");
+
+        nameLabel.setStyle("-fx-pref-width: 1000px");
+        delete.getStyleClass().add("deleteBtn");
+
+        element.getChildren().addAll(nameLabel, delete);
+        element.setAlignment(Pos.CENTER);
+        return element;
+    }
+
     private static String getRandomColor() {
         int i = new Random().nextInt(References.colors.length);
         return References.colors[i];
+    }
+
+    public static String toRGB(Color color) {
+        String temp;
+
+        StringBuilder sb = new StringBuilder("#");
+        temp = Integer.toHexString((int) (color.getRed()*255));
+        if (temp.length() <= 1)
+            sb.append("0");
+        sb.append(temp);
+
+        temp = Integer.toHexString((int) (color.getGreen()*255));
+        if (temp.length() <= 1)
+            sb.append("0");
+        sb.append(temp);
+
+        temp = Integer.toHexString((int) (color.getBlue()*255));
+        if (temp.length() <= 1)
+            sb.append("0");
+        sb.append(temp);
+
+        return sb.toString();
     }
 }
