@@ -18,7 +18,7 @@ public class Controller {
     private List<Liquid> liquids = new LinkedList<>();
     private double amountOfLiquids = 0;
 
-    private void addElement(Liquid liquid, HBox panel) {
+    private void setUpElement(Liquid liquid, HBox panel) {
         liquids.add(liquid);
         mainContainer.getChildren().add(panel);
         panel.lookup(".deleteBtn").setOnMouseClicked(event -> {
@@ -41,17 +41,19 @@ public class Controller {
         Liquid liquid = new Liquid();
         HBox panel = Layout.getAlcoholPanel(liquid);
         liquid.percentProperty().addListener((observable, oldValue, newValue) -> refreshInfo());
-        addElement(liquid, panel);
+        setUpElement(liquid, panel);
     }
 
     public void addOther() {
         Liquid liquid = new Liquid();
         HBox panel = Layout.getOtherPanel(liquid);
-        addElement(liquid, panel);
+        setUpElement(liquid, panel);
     }
 
     public void addInfo() {
-        mainContainer.getChildren().add(Layout.getInfoPanel());
+        HBox panel = Layout.getInfoPanel();
+        mainContainer.getChildren().add(panel);
+        panel.lookup(".deleteBtn").setOnMouseClicked(event -> mainContainer.getChildren().remove(panel));
     }
 
     private void refreshInfo() {

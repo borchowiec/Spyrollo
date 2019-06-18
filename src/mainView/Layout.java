@@ -89,11 +89,13 @@ public class Layout {
         HBox panel = new HBox();
 
         TextField info = new TextField("Informacja");
+        Button delete = new Button("Usuń");
 
         panel.getStyleClass().add("panel");
         info.getStyleClass().add("infoInput");
+        delete.getStyleClass().add("deleteBtn");
 
-        panel.getChildren().addAll(info);
+        panel.getChildren().addAll(info, delete);
         return panel;
     }
 
