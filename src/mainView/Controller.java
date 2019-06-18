@@ -2,10 +2,7 @@ package mainView;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -21,29 +18,36 @@ public class Controller {
     private List<Liquid> liquids = new LinkedList<>();
     private double amountOfLiquids = 0;
 
-    public void addAlcohol() {
-        Liquid liquid = new Liquid();
-        mainContainer.getChildren().add(Layout.getAlcoholPanel(liquid));
+    private void addElement(Liquid liquid, HBox panel) {
         liquids.add(liquid);
+        mainContainer.getChildren().add(panel);
+        panel.lookup(".deleteBtn").setOnMouseClicked(event -> {
+            liquids.remove(liquid);
+            mainContainer.getChildren().remove(panel);
+            refreshInfo();
+            refreshMixPanel();
+        });
+
         liquid.amountProperty().addListener((observable, oldValue, newValue) -> {
             refreshInfo();
             refreshMixPanel();
         });
-        liquid.percentProperty().addListener((observable, oldValue, newValue) -> refreshInfo());
+
         refreshInfo();
         refreshMixPanel();
     }
 
+    public void addAlcohol() {
+        Liquid liquid = new Liquid();
+        HBox panel = Layout.getAlcoholPanel(liquid);
+        liquid.percentProperty().addListener((observable, oldValue, newValue) -> refreshInfo());
+        addElement(liquid, panel);
+    }
+
     public void addOther() {
         Liquid liquid = new Liquid();
-        mainContainer.getChildren().add(Layout.getOtherPanel(liquid));
-        liquids.add(liquid);
-        liquid.amountProperty().addListener((observable, oldValue, newValue) -> {
-            refreshInfo();
-            refreshMixPanel();
-        });
-        refreshInfo();
-        refreshMixPanel();
+        HBox panel = Layout.getOtherPanel(liquid);
+        addElement(liquid, panel);
     }
 
     public void addInfo() {
@@ -54,16 +58,22 @@ public class Controller {
         double alcohol = 0;
         double other = 0;
 
-        for (Liquid l : liquids) {
-            double tempAlc = l.getAmount() * (l.getPercent() / 100.0);
-            alcohol += tempAlc;
-            other += l.getAmount() - tempAlc;
+        if (liquids.size() == 0) {
+            amountLabel.setText(0 + " ml");
+            percentageLabel.setText(0 + " %");
+            amountOfLiquids = 0;
         }
+        else {
+            for (Liquid l : liquids) {
+                double tempAlc = l.getAmount() * (l.getPercent() / 100.0);
+                alcohol += tempAlc;
+                other += l.getAmount() - tempAlc;
+            }
 
-        amountLabel.setText((alcohol + other) + " ml");
-        percentageLabel.setText((alcohol / (alcohol + other))*100 + " %");
-
-        amountOfLiquids = alcohol + other;
+            amountOfLiquids = alcohol + other;
+            amountLabel.setText(amountOfLiquids + " ml");
+            percentageLabel.setText((alcohol / (alcohol + other)) * 100 + " %");
+        }
     }
 
     private void refreshMixPanel() {
