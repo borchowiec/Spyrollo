@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 
+import java.lang.ref.Reference;
 import java.util.Random;
 
 public class Layout {
@@ -97,8 +98,7 @@ public class Layout {
     }
 
     private static String getRandomColor() {
-        Random random = new Random();
-        int nextInt = random.nextInt(0xffffff + 1);
-        return String.format("#%06x", nextInt);
+        int i = new Random().nextInt(References.colors.length);
+        return References.colors[i];
     }
 }
