@@ -13,84 +13,97 @@ public class Layout {
     public static final int OTHER = 1;
     public static final int INFO = 2;
 
-    public static HBox getAlcoholPanel(Liquid liquid) {
+    private static HBox getPanel() {
         HBox panel = new HBox();
-
-        TextField name = new TextField(liquid.getName());
-        Spinner<Integer> amount = new Spinner<>();
-        Spinner<Integer> percentage = new Spinner<>();
-        Button color = new Button();
-        Button save = new Button("Zapisz");
-        Button delete = new Button("Usuń");
-
         panel.setSpacing(15);
         panel.setAlignment(Pos.CENTER);
-
         panel.getStyleClass().add("panel");
-        name.getStyleClass().add("nameInput");
-        amount.getStyleClass().add("amountSpinner");
-        percentage.getStyleClass().add("percentageSpinner");
-        color.getStyleClass().add("colorBtn");
-        save.getStyleClass().add("saveBtn");
-        delete.getStyleClass().add("deleteBtn");
-
-        amount.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Short.MAX_VALUE, liquid.getAmount(), 100));
-        percentage.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, liquid.getPercent()));
-        amount.setEditable(true);
-        percentage.setEditable(true);
-
-        color.setStyle("-fx-background-color: " + liquid.getColor());
-
-        amount.valueProperty().addListener((observable, oldValue, newValue) -> liquid.setAmount(newValue));
-        percentage.valueProperty().addListener((observable, oldValue, newValue) -> liquid.setPercent(newValue));
-        name.textProperty().addListener((observable, oldValue, newValue) -> liquid.setName(newValue));
-
-        panel.getChildren().addAll(name, amount, new Label("ml"), percentage, new Label("%"), color, save, delete);
         return panel;
     }
 
-    public static HBox getOtherPanel(Liquid liquid) {
-        HBox panel = new HBox();
-
+    private static TextField getNameInput(Liquid liquid) {
         TextField name = new TextField(liquid.getName());
-        Spinner<Integer> amount = new Spinner<>();
-        Button color = new Button();
-        Button save = new Button("Zapisz");
-        Button delete = new Button("Usuń");
-
-        panel.setSpacing(15);
-        panel.setAlignment(Pos.CENTER);
-
-        panel.getStyleClass().add("panel");
         name.getStyleClass().add("nameInput");
-        amount.getStyleClass().add("amountSpinner");
-        color.getStyleClass().add("colorBtn");
-        save.getStyleClass().add("saveBtn");
-        delete.getStyleClass().add("deleteBtn");
+        name.textProperty().addListener((observable, oldValue, newValue) -> liquid.setName(newValue));
+        return name;
+    }
 
+    private static Spinner<Integer> getAmountSpinner(Liquid liquid) {
+        Spinner<Integer> amount = new Spinner<>();
+        amount.getStyleClass().add("amountSpinner");
         amount.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Short.MAX_VALUE, liquid.getAmount(), 100));
         amount.setEditable(true);
-
-        color.setStyle("-fx-background-color: " + liquid.getColor());
-
         amount.valueProperty().addListener((observable, oldValue, newValue) -> liquid.setAmount(newValue));
-        name.textProperty().addListener((observable, oldValue, newValue) -> liquid.setName(newValue));
+        return amount;
+    }
 
-        panel.getChildren().addAll(name, amount, new Label("ml"), color, save, delete);
+    private static Button getColorButton(Liquid liquid) {
+        Button color = new Button();
+        color.getStyleClass().add("colorBtn");
+        color.setStyle("-fx-background-color: " + liquid.getColor());
+        return color;
+    }
+
+    private static Button getSaveButton() {
+        Button save = new Button("Zapisz");
+        save.getStyleClass().add("saveBtn");
+        return save;
+    }
+
+    private static Button getDeleteButton() {
+        Button delete = new Button("Usuń");
+        delete.getStyleClass().add("deleteBtn");
+        return delete;
+    }
+
+    public static HBox getAlcoholPanel(Liquid liquid) {
+        HBox panel = getPanel();
+
+        Spinner<Integer> percentage = new Spinner<>();
+        percentage.getStyleClass().add("percentageSpinner");
+        percentage.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, liquid.getPercent()));
+        percentage.setEditable(true);
+        percentage.valueProperty().addListener((observable, oldValue, newValue) -> liquid.setPercent(newValue));
+
+        panel.getChildren().addAll(
+                getNameInput(liquid),
+                getAmountSpinner(liquid),
+                new Label("ml"),
+                percentage,
+                new Label("%"),
+                getColorButton(liquid),
+                getSaveButton(),
+                getDeleteButton()
+        );
+
+        return panel;
+    }
+
+
+
+    public static HBox getOtherPanel(Liquid liquid) {
+        HBox panel = getPanel();
+
+        panel.getChildren().addAll(
+                getNameInput(liquid),
+                getAmountSpinner(liquid),
+                new Label("ml"),
+                getColorButton(liquid),
+                getSaveButton(),
+                getDeleteButton()
+        );
+
         return panel;
     }
 
     public static HBox getInfoPanel() {
         HBox panel = new HBox();
+        panel.getStyleClass().add("panel");
 
         TextField info = new TextField("Informacja");
-        Button delete = new Button("Usuń");
-
-        panel.getStyleClass().add("panel");
         info.getStyleClass().add("infoInput");
-        delete.getStyleClass().add("deleteBtn");
 
-        panel.getChildren().addAll(info, delete);
+        panel.getChildren().addAll(info, getDeleteButton());
         return panel;
     }
 
@@ -98,14 +111,10 @@ public class Layout {
         HBox element = new HBox();
 
         Label nameLabel = new Label(name + " " + percents+"%");
-        Button delete = new Button("Usuń");
-
         nameLabel.setStyle("-fx-pref-width: 1000px");
         nameLabel.setCursor(Cursor.HAND);
 
-        delete.getStyleClass().add("deleteBtn");
-
-        element.getChildren().addAll(nameLabel, delete);
+        element.getChildren().addAll(nameLabel, getDeleteButton());
         element.setAlignment(Pos.CENTER);
         return element;
     }
@@ -114,12 +123,10 @@ public class Layout {
         HBox element = new HBox();
 
         Label nameLabel = new Label(name);
-        Button delete = new Button("Usuń");
-
         nameLabel.setStyle("-fx-pref-width: 1000px");
-        delete.getStyleClass().add("deleteBtn");
+        nameLabel.setCursor(Cursor.HAND);
 
-        element.getChildren().addAll(nameLabel, delete);
+        element.getChildren().addAll(nameLabel, getDeleteButton());
         element.setAlignment(Pos.CENTER);
         return element;
     }
