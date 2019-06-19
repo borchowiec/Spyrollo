@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-class Liquid {
+class Liquid implements Cloneable {
     private StringProperty name;
     private String color;
     private IntegerProperty amount;
@@ -65,5 +65,10 @@ class Liquid {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    @Override
+    protected Liquid clone() {
+        return new Liquid(name.getValue(), 100, percent.getValue(), color);
     }
 }

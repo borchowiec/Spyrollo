@@ -57,7 +57,11 @@ public class Controller implements Initializable {
     }
 
     public void addAlcohol() {
-        Liquid liquid = new Liquid();
+        Liquid liquid = new Liquid("Alkohol", 100, 0, Layout.getRandomColor());
+        addAlcohol(liquid);
+    }
+
+    public void addAlcohol(Liquid liquid) {
         HBox panel = Layout.getAlcoholPanel(liquid);
         liquid.percentProperty().addListener((observable, oldValue, newValue) -> refreshInfo());
         panel.lookup(".saveBtn").setOnMouseClicked(event -> {
@@ -72,7 +76,11 @@ public class Controller implements Initializable {
     }
 
     public void addOther() {
-        Liquid liquid = new Liquid();
+        Liquid liquid = new Liquid("Napój", 100, 0, Layout.getRandomColor());
+        addOther(liquid);
+    }
+
+    public void addOther(Liquid liquid) {
         HBox panel = Layout.getOtherPanel(liquid);
         panel.lookup(".saveBtn").setOnMouseClicked(event -> {
             addOtherToLiquidList(liquid);
@@ -85,11 +93,17 @@ public class Controller implements Initializable {
     }
 
     public void addAlcoholToLiquidList(Liquid liquid) {
-        liquidsList.getChildren().add(Layout.getAlcoholListElement(liquid.getName(), liquid.getPercent()));
+        HBox element = Layout.getAlcoholListElement(liquid.getName(), liquid.getPercent());
+        liquidsList.getChildren().add(element);
+
+        element.lookup(".label").setOnMouseClicked(event -> addAlcohol(liquid.clone()));
     }
 
     public void addOtherToLiquidList(Liquid liquid) {
-        liquidsList.getChildren().add(Layout.getOtherListElement(liquid.getName()));
+        HBox element = Layout.getOtherListElement(liquid.getName());
+        liquidsList.getChildren().add(element);
+
+        element.lookup(".label").setOnMouseClicked(event -> addOther(liquid.clone()));
     }
 
     public void addInfo() {
