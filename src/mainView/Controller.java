@@ -97,6 +97,11 @@ public class Controller implements Initializable {
         liquidsList.getChildren().add(element);
 
         element.lookup(".label").setOnMouseClicked(event -> addAlcohol(liquid.clone()));
+        element.lookup(".deleteBtn").setOnMouseClicked(event -> {
+            int i = liquidsList.getChildren().indexOf(element);
+            jsonHandler.removeFromLiquidList(i);
+            liquidsList.getChildren().remove(element);
+        });
     }
 
     public void addOtherToLiquidList(Liquid liquid) {
@@ -104,6 +109,11 @@ public class Controller implements Initializable {
         liquidsList.getChildren().add(element);
 
         element.lookup(".label").setOnMouseClicked(event -> addOther(liquid.clone()));
+        element.lookup(".deleteBtn").setOnMouseClicked(event -> {
+            int i = liquidsList.getChildren().indexOf(element);
+            jsonHandler.removeFromLiquidList(i);
+            liquidsList.getChildren().remove(element);
+        });
     }
 
     public void addInfo() {

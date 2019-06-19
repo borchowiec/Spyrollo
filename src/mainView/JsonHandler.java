@@ -39,6 +39,11 @@ public class JsonHandler {
         save();
     }
 
+    public void removeFromLiquidList(int i) {
+        json.get("liquids").getAsJsonArray().remove(i);
+        save();
+    }
+
     private JsonObject getBasicElement(int type, String name, String color) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("type", type);
