@@ -1,1 +1,1 @@
-{"basics":[{"type":0,"name":"Alkohol","color":"#f44336","percent":12},{"type":1,"name":"Napój","color":"#ffc107"}]}
+{"liquids":[{"type":0,"name":"Wódka","color":"#bad4ff","percent":40},{"type":0,"name":"Piwo","color":"#ffe122","percent":5},{"type":0,"name":"Alkohol","color":"#ffeb3b","percent":2},{"type":1,"name":"Napój","color":"#e91e63"},{"type":0,"name":"teścik","color":"#3f51b5","percent":20},{"type":0,"name":"teścik","color":"#3f51b5","percent":20},{"type":1,"name":"Napój","color":"#cddc39"}]}

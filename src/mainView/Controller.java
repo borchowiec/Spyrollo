@@ -1,6 +1,7 @@
 package mainView;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -8,10 +9,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
+import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class Controller {
+public class Controller implements Initializable {
 
     public VBox mixPanel;
     public Label amountLabel;
@@ -27,6 +30,11 @@ public class Controller {
 
     public Controller() {
         jsonHandler = new JsonHandler();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        jsonHandler.load(this);
     }
 
     private void setUpElement(Liquid liquid, HBox panel) {
@@ -53,7 +61,7 @@ public class Controller {
         HBox panel = Layout.getAlcoholPanel(liquid);
         liquid.percentProperty().addListener((observable, oldValue, newValue) -> refreshInfo());
         panel.lookup(".saveBtn").setOnMouseClicked(event -> {
-            liquidsList.getChildren().add(Layout.getAlcoholListElement(liquid.getName(), liquid.getPercent()));
+            addAlcoholToLiquidList(liquid);
             jsonHandler.addAlcohol(
                     ((TextField)panel.lookup(".nameInput")).getText(),
                     (int) ((Spinner)panel.lookup(".percentageSpinner")).getValue(),
@@ -67,13 +75,21 @@ public class Controller {
         Liquid liquid = new Liquid();
         HBox panel = Layout.getOtherPanel(liquid);
         panel.lookup(".saveBtn").setOnMouseClicked(event -> {
-            liquidsList.getChildren().add(Layout.getOtherListElement(liquid.getName()));
+            addOtherToLiquidList(liquid);
             jsonHandler.addOther(
                     ((TextField)panel.lookup(".nameInput")).getText(),
                     Layout.toRGB((Color) ((Button)panel.lookup(".colorBtn")).getBackground().getFills().get(0).getFill())
             );
         });
         setUpElement(liquid, panel);
+    }
+
+    public void addAlcoholToLiquidList(Liquid liquid) {
+        liquidsList.getChildren().add(Layout.getAlcoholListElement(liquid.getName(), liquid.getPercent()));
+    }
+
+    public void addOtherToLiquidList(Liquid liquid) {
+        liquidsList.getChildren().add(Layout.getOtherListElement(liquid.getName()));
     }
 
     public void addInfo() {
