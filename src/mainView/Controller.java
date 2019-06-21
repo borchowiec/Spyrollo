@@ -1,11 +1,17 @@
 package mainView;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,6 +23,8 @@ public class Controller implements Initializable {
     public Label amountLabel;
     public Label percentageLabel;
     public VBox liquidsList;
+    public TextField titleInput;
+    public Label msgLabel;
     @FXML
     private VBox mainContainer;
 
@@ -31,7 +39,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        jsonHandler.load(this);
+        jsonHandler.loadLiquids(this);
     }
 
     private void setUpElement(Liquid liquid, HBox panel) {
@@ -63,7 +71,7 @@ public class Controller implements Initializable {
         liquid.percentProperty().addListener((observable, oldValue, newValue) -> refreshInfo());
         panel.lookup(".saveBtn").setOnMouseClicked(event -> {
             addAlcoholToLiquidList(liquid);
-            jsonHandler.addAlcohol(
+            jsonHandler.addAlcoholToLiquids(
                     ((TextField)panel.lookup(".nameInput")).getText(),
                     (int) ((Spinner)panel.lookup(".percentageSpinner")).getValue(),
                     Layout.toRGB((Color) ((Button)panel.lookup(".colorBtn")).getBackground().getFills().get(0).getFill())
@@ -81,7 +89,7 @@ public class Controller implements Initializable {
         HBox panel = Layout.getOtherPanel(liquid);
         panel.lookup(".saveBtn").setOnMouseClicked(event -> {
             addOtherToLiquidList(liquid);
-            jsonHandler.addOther(
+            jsonHandler.addOtherToLiquids(
                     ((TextField)panel.lookup(".nameInput")).getText(),
                     Layout.toRGB((Color) ((Button)panel.lookup(".colorBtn")).getBackground().getFills().get(0).getFill())
             );
@@ -96,7 +104,7 @@ public class Controller implements Initializable {
         element.lookup(".label").setOnMouseClicked(event -> addAlcohol(liquid.clone()));
         element.lookup(".deleteBtn").setOnMouseClicked(event -> {
             int i = liquidsList.getChildren().indexOf(element);
-            jsonHandler.removeFromLiquidList(i);
+            jsonHandler.removeFromLiquidsList(i);
             liquidsList.getChildren().remove(element);
         });
     }
@@ -108,7 +116,7 @@ public class Controller implements Initializable {
         element.lookup(".label").setOnMouseClicked(event -> addOther(liquid.clone()));
         element.lookup(".deleteBtn").setOnMouseClicked(event -> {
             int i = liquidsList.getChildren().indexOf(element);
-            jsonHandler.removeFromLiquidList(i);
+            jsonHandler.removeFromLiquidsList(i);
             liquidsList.getChildren().remove(element);
         });
     }
@@ -166,5 +174,22 @@ public class Controller implements Initializable {
         }
 
         mixPanel.getChildren().add(gridPane);
+    }
+
+    public void saveRecipe() {
+        try {
+            jsonHandler.saveRecipe(titleInput.getText(), mainContainer.getChildren());
+            showMsg("Zapisano!");
+        } catch (IOException e) {
+            showMsg("Nie można zapisać pliku!");
+            e.printStackTrace();
+        }
+    }
+
+    private void showMsg(String msg) {
+        msgLabel.setText(msg);
+        new Timeline(new KeyFrame(
+                Duration.millis(2500),
+                ae -> msgLabel.setText(" "))).play();
     }
 }

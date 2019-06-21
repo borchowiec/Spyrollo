@@ -4,44 +4,49 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 
 import java.io.*;
 
-import static mainView.Layout.ALCOHOL;
-import static mainView.Layout.OTHER;
+import static mainView.Layout.*;
 
 public class JsonHandler {
-    private JsonObject json;
+    private JsonObject liquidsJson;
 
     public JsonHandler() {
         File jsonFile = new File("liquids.json");
         if (!jsonFile.exists()) {
-            json = new JsonObject();
+            liquidsJson = new JsonObject();
             JsonArray jsonArray = new JsonArray();
-            json.add("liquids", jsonArray);
-            addAlcohol("Wódka", 40, "#bad4ff");
-            addAlcohol("Piwo", 5, "#ffe122");
+            liquidsJson.add("liquids", jsonArray);
+            addAlcoholToLiquids("Wódka", 40, "#bad4ff");
+            addAlcoholToLiquids("Piwo", 5, "#ffe122");
         }
     }
 
-    public void addAlcohol(String name, int percent, String color) {
-        JsonArray jsonArray = json.getAsJsonArray("liquids");
+    public void addAlcoholToLiquids(String name, int percent, String color) {
+        JsonArray jsonArray = liquidsJson.getAsJsonArray("liquids");
         JsonObject jsonAlcohol = getBasicElement(ALCOHOL, name, color);
         jsonAlcohol.addProperty("percent", percent);
         jsonArray.add(jsonAlcohol);
-        save();
+        saveLiquids();
     }
 
-    public void addOther(String name, String color) {
-        JsonArray jsonArray = json.getAsJsonArray("liquids");
+    public void addOtherToLiquids(String name, String color) {
+        JsonArray jsonArray = liquidsJson.getAsJsonArray("liquids");
         JsonObject jsonOther = getBasicElement(OTHER, name, color);
         jsonArray.add(jsonOther);
-        save();
+        saveLiquids();
     }
 
-    public void removeFromLiquidList(int i) {
-        json.get("liquids").getAsJsonArray().remove(i);
-        save();
+    public void removeFromLiquidsList(int i) {
+        liquidsJson.get("liquids").getAsJsonArray().remove(i);
+        saveLiquids();
     }
 
     private JsonObject getBasicElement(int type, String name, String color) {
@@ -52,16 +57,16 @@ public class JsonHandler {
         return jsonObject;
     }
 
-    public void load(Controller controller) {
+    public void loadLiquids(Controller controller) {
         try {
             JsonParser parser = new JsonParser();
             JsonElement jsonElement = parser.parse(new FileReader("liquids.json"));
-            json = jsonElement.getAsJsonObject();
+            liquidsJson = jsonElement.getAsJsonObject();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        JsonArray array = json.getAsJsonArray("liquids");
+        JsonArray array = liquidsJson.getAsJsonArray("liquids");
 
         for (JsonElement el : array) {
             JsonObject obj = el.getAsJsonObject();
@@ -84,13 +89,52 @@ public class JsonHandler {
         }
     }
 
-    private void save() {
+    private void saveLiquids() {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("liquids.json"));
-            writer.write(json.toString());
+            writer.write(liquidsJson.toString());
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void saveRecipe(String title, ObservableList<Node> elements) throws IOException {
+        JsonObject json = new JsonObject();
+        JsonArray array = new JsonArray();
+
+        json.addProperty("title", title);
+
+        for (Node el : elements) {
+            JsonObject temp = new JsonObject();
+            if (el.lookup(".percentsSpinner") != null) {
+                String color = Layout.toRGB((Color) ((Button)el.lookup(".colorBtn")).getBackground().getFills().get(0).getFill());
+                temp.addProperty("type", ALCOHOL);
+                temp.addProperty("name", ((TextField) el.lookup(".nameInput")).getText());
+                temp.addProperty("percents", (int) ((Spinner) el.lookup(".percentsSpinner")).getValue());
+                temp.addProperty("amount", (int) ((Spinner) el.lookup(".amountSpinner")).getValue());
+                temp.addProperty("color", color);
+            }
+            else if (el.lookup(".amountSpinner") != null) {
+                String color = Layout.toRGB((Color) ((Button) el.lookup(".colorBtn")).getBackground().getFills().get(0).getFill());
+                temp.addProperty("type", OTHER);
+                temp.addProperty("name", ((TextField) el.lookup(".nameInput")).getText());
+                temp.addProperty("amount", (int) ((Spinner) el.lookup(".amountSpinner")).getValue());
+                temp.addProperty("color", color);
+            }
+            else {
+                temp.addProperty("type", INFO);
+                temp.addProperty("content", ((TextField) el.lookup(".infoInput")).getText());
+            }
+
+            array.add(temp);
+        }
+
+        json.add("elements", array);
+        new File("recipes").mkdir();
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter("recipes" + File.separator + title + ".spyr"));
+        writer.write(json.toString());
+        writer.close();
     }
 }

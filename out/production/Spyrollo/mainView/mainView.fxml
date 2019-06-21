@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
+<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.geometry.Insets?>
@@ -8,9 +10,11 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainView.Controller">
    <top>
-      <HBox id="topPanel" BorderPane.alignment="CENTER">
+      <HBox id="topPanel" alignment="BASELINE_LEFT" spacing="2.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField id="projectTitle" text="Untitled" />
+            <TextField id="projectTitle" fx:id="titleInput" text="Untitled" />
+            <Button mnemonicParsing="false" onAction="#saveRecipe" text="Zapisz" />
+            <Label fx:id="msgLabel" text=" " />
          </children>
       </HBox>
    </top>

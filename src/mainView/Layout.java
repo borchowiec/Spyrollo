@@ -60,7 +60,7 @@ public class Layout {
         HBox panel = getPanel();
 
         Spinner<Integer> percentage = new Spinner<>();
-        percentage.getStyleClass().add("percentageSpinner");
+        percentage.getStyleClass().add("percentsSpinner");
         percentage.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, liquid.getPercent()));
         percentage.setEditable(true);
         percentage.valueProperty().addListener((observable, oldValue, newValue) -> liquid.setPercent(newValue));
@@ -78,8 +78,6 @@ public class Layout {
 
         return panel;
     }
-
-
 
     public static HBox getOtherPanel(Liquid liquid) {
         HBox panel = getPanel();

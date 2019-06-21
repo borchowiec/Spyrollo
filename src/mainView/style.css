@@ -59,7 +59,7 @@
     -fx-font-style: italic;
 }
 
-.amountSpinner, .percentageSpinner {
+.amountSpinner, .percentsSpinner {
     -fx-background-color: #6200EE;
 }
 
@@ -68,7 +68,7 @@
     -fx-max-width: 130px;
 }
 
-.percentageSpinner {
+.percentsSpinner {
     -fx-min-width: 90px;
     -fx-max-width: 90px;
 }
@@ -85,4 +85,15 @@
     -fx-text-fill: white;
     -fx-min-width: 90px;
     -fx-max-width: 90px;
+}
+
+#topPanel .button {
+    -fx-background-color: #6200EE;
+    -fx-text-fill: white;
+    -fx-border-width: 0;
+}
+
+#topPanel .label {
+    -fx-text-fill: white;
+    -fx-font-style: italic;
 }
