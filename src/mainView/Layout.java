@@ -3,10 +3,14 @@ package mainView;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
 import java.util.Random;
+
+import static mainView.References.*;
 
 public class Layout {
     public static final int ALCOHOL = 0;
@@ -47,6 +51,7 @@ public class Layout {
     private static Button getSaveButton() {
         Button save = new Button("Zapisz");
         save.getStyleClass().add("saveBtn");
+
         return save;
     }
 
@@ -130,8 +135,8 @@ public class Layout {
     }
 
     static String getRandomColor() {
-        int i = new Random().nextInt(References.colors.length);
-        return References.colors[i];
+        int i = new Random().nextInt(colors.length);
+        return colors[i];
     }
 
     public static String toRGB(Color color) {

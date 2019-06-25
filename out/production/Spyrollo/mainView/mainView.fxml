@@ -14,6 +14,7 @@
          <children>
             <TextField id="projectTitle" fx:id="titleInput" text="Untitled" />
             <Button mnemonicParsing="false" onAction="#saveRecipe" text="Zapisz" />
+            <Button mnemonicParsing="false" onAction="#loadRecipe" text="Wczytaj" />
             <Label fx:id="msgLabel" text=" " />
          </children>
       </HBox>

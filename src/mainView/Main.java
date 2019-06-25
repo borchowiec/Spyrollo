@@ -13,7 +13,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("mainView.fxml"));
         primaryStage.setTitle("Spyrollo");
         primaryStage.setScene(new Scene(root, 1200, 800));
-        root.getStylesheets().add("mainView/style.css");
+        root.getStylesheets().add("mainView/style/style.css");
         primaryStage.show();
     }
 

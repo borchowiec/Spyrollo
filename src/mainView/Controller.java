@@ -1,12 +1,16 @@
 package mainView;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
@@ -16,6 +20,8 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import static mainView.Layout.*;
 
 public class Controller implements Initializable {
 
@@ -73,7 +79,7 @@ public class Controller implements Initializable {
             addAlcoholToLiquidList(liquid);
             jsonHandler.addAlcoholToLiquids(
                     ((TextField)panel.lookup(".nameInput")).getText(),
-                    (int) ((Spinner)panel.lookup(".percentageSpinner")).getValue(),
+                    (int) ((Spinner)panel.lookup(".percentsSpinner")).getValue(),
                     Layout.toRGB((Color) ((Button)panel.lookup(".colorBtn")).getBackground().getFills().get(0).getFill())
             );
         });
@@ -122,6 +128,10 @@ public class Controller implements Initializable {
     }
 
     public void addInfo() {
+        addInfo("Informacja");
+    }
+
+    private void addInfo(String content) {
         HBox panel = Layout.getInfoPanel();
         mainContainer.getChildren().add(panel);
         panel.lookup(".deleteBtn").setOnMouseClicked(event -> mainContainer.getChildren().remove(panel));
@@ -183,6 +193,44 @@ public class Controller implements Initializable {
         } catch (IOException e) {
             showMsg("Nie można zapisać pliku!");
             e.printStackTrace();
+        }
+    }
+
+    public void loadRecipe() {
+        JsonObject json = RecipeChooser.display();
+        titleInput.setText(json.get("title").getAsString());
+        JsonArray elements = json.getAsJsonArray("elements");
+
+        mainContainer.getChildren().clear();
+        mixPanel.getChildren().clear();
+        liquids.clear();
+
+        for (JsonElement el : elements) {
+            JsonObject temp = el.getAsJsonObject();
+            Liquid liquid;
+            switch (temp.get("type").getAsInt()) {
+                case ALCOHOL:
+                    liquid = new Liquid(
+                            temp.get("name").getAsString(),
+                            temp.get("amount").getAsInt(),
+                            temp.get("percents").getAsInt(),
+                            temp.get("color").getAsString()
+                    );
+                    addAlcohol(liquid);
+                    break;
+                case OTHER:
+                    liquid = new Liquid(
+                            temp.get("name").getAsString(),
+                            temp.get("amount").getAsInt(),
+                            0,
+                            temp.get("color").getAsString()
+                    );
+                    addOther(liquid);
+                    break;
+                case INFO:
+                    addInfo(temp.get("content").getAsString());
+                    break;
+            }
         }
     }
 

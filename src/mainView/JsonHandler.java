@@ -57,14 +57,19 @@ public class JsonHandler {
         return jsonObject;
     }
 
-    public void loadLiquids(Controller controller) {
+    public static JsonObject toJsonObject(File file) {
         try {
             JsonParser parser = new JsonParser();
-            JsonElement jsonElement = parser.parse(new FileReader("liquids.json"));
-            liquidsJson = jsonElement.getAsJsonObject();
+            JsonElement jsonElement = parser.parse(new FileReader(file));
+            return jsonElement.getAsJsonObject();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return new JsonObject();
+    }
+
+    public void loadLiquids(Controller controller) {
+        liquidsJson = toJsonObject(new File("liquids.json"));
 
         JsonArray array = liquidsJson.getAsJsonArray("liquids");
 
