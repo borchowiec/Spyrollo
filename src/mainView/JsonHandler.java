@@ -6,10 +6,9 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 
 import java.io.*;
 
@@ -113,7 +112,7 @@ public class JsonHandler {
         for (Node el : elements) {
             JsonObject temp = new JsonObject();
             if (el.lookup(".percentsSpinner") != null) {
-                String color = Layout.toRGB((Color) ((Button)el.lookup(".colorBtn")).getBackground().getFills().get(0).getFill());
+                String color = Layout.toRGB(((ColorPicker)el.lookup(".colorPicker")).getValue());
                 temp.addProperty("type", ALCOHOL);
                 temp.addProperty("name", ((TextField) el.lookup(".nameInput")).getText());
                 temp.addProperty("percents", (int) ((Spinner) el.lookup(".percentsSpinner")).getValue());
@@ -121,7 +120,7 @@ public class JsonHandler {
                 temp.addProperty("color", color);
             }
             else if (el.lookup(".amountSpinner") != null) {
-                String color = Layout.toRGB((Color) ((Button) el.lookup(".colorBtn")).getBackground().getFills().get(0).getFill());
+                String color = Layout.toRGB(((ColorPicker)el.lookup(".colorPicker")).getValue());
                 temp.addProperty("type", OTHER);
                 temp.addProperty("name", ((TextField) el.lookup(".nameInput")).getText());
                 temp.addProperty("amount", (int) ((Spinner) el.lookup(".amountSpinner")).getValue());

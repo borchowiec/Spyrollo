@@ -1,6 +1,5 @@
 package mainView;
 
-import com.google.gson.JsonObject;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -8,7 +7,7 @@ import javafx.beans.property.StringProperty;
 
 class Liquid implements Cloneable {
     private StringProperty name;
-    private String color;
+    private StringProperty color;
     private IntegerProperty amount;
     private IntegerProperty percent;
 
@@ -21,7 +20,7 @@ class Liquid implements Cloneable {
         this.name = new SimpleStringProperty(name);
         this.amount = new SimpleIntegerProperty(amount);
         this.percent = new SimpleIntegerProperty(percent);
-        this.color = color;
+        this.color = new SimpleStringProperty(color);
     }
 
     public String getName() {
@@ -61,15 +60,19 @@ class Liquid implements Cloneable {
     }
 
     public String getColor() {
+        return color.get();
+    }
+
+    public StringProperty colorProperty() {
         return color;
     }
 
     public void setColor(String color) {
-        this.color = color;
+        this.color.set(color);
     }
 
     @Override
     protected Liquid clone() {
-        return new Liquid(name.getValue(), 100, percent.getValue(), color);
+        return new Liquid(name.getValue(), 100, percent.getValue(), color.getValue());
     }
 }

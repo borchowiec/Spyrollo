@@ -7,12 +7,11 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -80,7 +79,7 @@ public class Controller implements Initializable {
             jsonHandler.addAlcoholToLiquids(
                     ((TextField)panel.lookup(".nameInput")).getText(),
                     (int) ((Spinner)panel.lookup(".percentsSpinner")).getValue(),
-                    Layout.toRGB((Color) ((Button)panel.lookup(".colorBtn")).getBackground().getFills().get(0).getFill())
+                    Layout.toRGB(((ColorPicker)panel.lookup(".colorPicker")).getValue())
             );
         });
         setUpElement(liquid, panel);
@@ -97,7 +96,7 @@ public class Controller implements Initializable {
             addOtherToLiquidList(liquid);
             jsonHandler.addOtherToLiquids(
                     ((TextField)panel.lookup(".nameInput")).getText(),
-                    Layout.toRGB((Color) ((Button)panel.lookup(".colorBtn")).getBackground().getFills().get(0).getFill())
+                    Layout.toRGB(((ColorPicker)panel.lookup(".colorPicker")).getValue())
             );
         });
         setUpElement(liquid, panel);
@@ -174,6 +173,9 @@ public class Controller implements Initializable {
             pane.setStyle("-fx-background-color: " + l.getColor());
             pane.setPrefHeight(1000);
             pane.setPrefWidth(1000);
+
+            l.colorProperty().addListener((observable, oldValue, newValue) ->
+                    pane.setStyle("-fx-background-color: " + l.getColor()));
 
             Label nameLabel = new Label(l.getName());
             nameLabel.textProperty().bind(l.nameProperty());

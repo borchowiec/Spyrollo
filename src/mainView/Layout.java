@@ -1,16 +1,16 @@
 package mainView;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
 import java.util.Random;
 
-import static mainView.References.*;
+import static mainView.References.colors;
 
 public class Layout {
     public static final int ALCOHOL = 0;
@@ -41,10 +41,19 @@ public class Layout {
         return amount;
     }
 
-    private static Button getColorButton(Liquid liquid) {
-        Button color = new Button();
-        color.getStyleClass().add("colorBtn");
-        color.setStyle("-fx-background-color: " + liquid.getColor());
+    private static ColorPicker getColorPicker(Liquid liquid) {
+        ColorPicker color = new ColorPicker();
+        color.getStyleClass().add("colorPicker");
+        color.getCustomColors().clear();
+
+        for (String c : colors)
+            color.getCustomColors().add(toColor(c));
+
+        color.valueProperty().addListener((observable, oldValue, newValue) -> {
+            liquid.setColor(toRGB(color.getValue()));
+            color.setStyle("-fx-background-color: " + liquid.getColor());
+        });
+        color.setValue(toColor(liquid.getColor()));
         return color;
     }
 
@@ -76,7 +85,7 @@ public class Layout {
                 new Label("ml"),
                 percentage,
                 new Label("%"),
-                getColorButton(liquid),
+                getColorPicker(liquid),
                 getSaveButton(),
                 getDeleteButton()
         );
@@ -91,7 +100,7 @@ public class Layout {
                 getNameInput(liquid),
                 getAmountSpinner(liquid),
                 new Label("ml"),
-                getColorButton(liquid),
+                getColorPicker(liquid),
                 getSaveButton(),
                 getDeleteButton()
         );
@@ -159,5 +168,13 @@ public class Layout {
         sb.append(temp);
 
         return sb.toString();
+    }
+
+    public static Color toColor(String color) {
+        return new Color(
+                Integer.valueOf( color.substring( 1, 3 ), 16) / 256.0,
+                Integer.valueOf( color.substring( 3, 5 ), 16) / 256.0,
+                Integer.valueOf( color.substring( 5, 7 ), 16) / 256.0,
+                1);
     }
 }

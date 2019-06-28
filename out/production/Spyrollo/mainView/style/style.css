@@ -87,6 +87,11 @@
     -fx-max-width: 90px;
 }
 
+.colorPicker {
+    -fx-min-width: 50px;
+    -fx-max-width: 50px;
+}
+
 #topPanel .button {
     -fx-background-color: #6200EE;
     -fx-text-fill: white;
