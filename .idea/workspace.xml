@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Spyrollo/mainView/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Spyrollo/mainView/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Spyrollo/mainView/JsonHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Spyrollo/mainView/JsonHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Spyrollo/mainView/Layout.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Spyrollo/mainView/Layout.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Spyrollo/mainView/Liquid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Spyrollo/mainView/Liquid.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Spyrollo/mainView/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Spyrollo/mainView/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Spyrollo/mainView/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Spyrollo/mainView/mainView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Spyrollo/mainView/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipes/Untitled.spyr" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/Untitled.spyr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mainView/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainView/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainView/JsonHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainView/JsonHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainView/Layout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainView/Layout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainView/Liquid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainView/Liquid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainView/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainView/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mainView/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainView/mainView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainView/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainView/style/style.css" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -94,47 +80,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/mainView/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="202" lean-forward="true" selection-start-line="202" selection-end-line="202" />
+            <state relative-caret-position="154">
+              <caret line="237" column="35" lean-forward="true" selection-start-line="237" selection-start-column="35" selection-end-line="237" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#4403#4404#0" expanded="true" />
-                <element signature="e#4428#4429#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/recipes/Cytrynówka.spyr">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="247" selection-start-column="247" selection-end-column="247" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mainView/Liquid.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mainView/RecipeChooser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="45" column="27" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#598#991#0" expanded="true" />
-                <element signature="e#990#991#0" expanded="true" />
+                <element signature="e#4440#4441#0" expanded="true" />
+                <element signature="e#8031#8032#0" expanded="true" />
+                <element signature="e#8073#8074#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -153,25 +106,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mainView/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="24" selection-start-line="8" selection-end-line="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mainView/mainView.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="157">
-              <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+              <caret line="19" column="76" selection-start-line="19" selection-start-column="76" selection-end-line="19" selection-end-column="76" />
             </state>
           </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
     </leaf>
@@ -241,6 +182,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -317,7 +259,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -480,16 +421,18 @@
       <workItem from="1561015008254" duration="3962000" />
       <workItem from="1561123925217" duration="5321000" />
       <workItem from="1561381087371" duration="5207000" />
+      <workItem from="1561448425604" duration="2063000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64676000" />
+    <option name="totallyTimeSpent" value="66739000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.2342282" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.23758389" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -498,13 +441,13 @@
       <window_info id="UI Designer" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3286119" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Application Servers" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3286119" />
       <window_info anchor="bottom" id="Problems" order="9" />
       <window_info anchor="bottom" id="Changes" order="10" />
       <window_info anchor="bottom" id="Profiler" order="11" />
@@ -528,6 +471,32 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
@@ -579,34 +548,9 @@
     <entry file="file://$PROJECT_DIR$/src/mainView/style/fontello/css/fontello.css" />
     <entry file="file://$PROJECT_DIR$/images/save.svg" />
     <entry file="file://$PROJECT_DIR$/img/save.svg" />
-    <entry file="file://$PROJECT_DIR$/src/loadRecipeView/loadRecipeView.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/loadRecipeView/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="5" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="22" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/loadRecipeView/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="24" column="28" lean-forward="true" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/loadRecipeView/loadRecipeView.fxml" />
+    <entry file="file://$PROJECT_DIR$/src/loadRecipeView/Main.java" />
+    <entry file="file://$PROJECT_DIR$/src/loadRecipeView/Controller.java" />
     <entry file="file://$PROJECT_DIR$/src/mainView/References.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -631,26 +575,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainView/mainView.fxml">
+    <entry file="file://$PROJECT_DIR$/recipes/test.txt" />
+    <entry file="file://$PROJECT_DIR$/recipes/Cytrynówka.spyr">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+        <state>
+          <caret column="247" selection-start-column="247" selection-end-column="247" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainView/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/mainView/Liquid.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="24" selection-start-line="8" selection-end-line="24" />
+        <state relative-caret-position="306">
+          <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/recipes/test.txt">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/src/mainView/RecipeChooser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="45" column="27" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mainView/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mainView/JsonHandler.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -662,43 +623,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainView/RecipeChooser.java">
+    <entry file="file://$PROJECT_DIR$/src/mainView/mainView.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="45" column="27" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#598#991#0" expanded="true" />
-            <element signature="e#990#991#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainView/Liquid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/recipes/Cytrynówka.spyr">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="247" selection-start-column="247" selection-end-column="247" />
+        <state relative-caret-position="157">
+          <caret line="19" column="76" selection-start-line="19" selection-start-column="76" selection-end-line="19" selection-end-column="76" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mainView/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="202" lean-forward="true" selection-start-line="202" selection-end-line="202" />
+        <state relative-caret-position="154">
+          <caret line="237" column="35" lean-forward="true" selection-start-line="237" selection-start-column="35" selection-end-line="237" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#4403#4404#0" expanded="true" />
-            <element signature="e#4428#4429#0" expanded="true" />
+            <element signature="e#4440#4441#0" expanded="true" />
+            <element signature="e#8031#8032#0" expanded="true" />
+            <element signature="e#8073#8074#0" expanded="true" />
           </folding>
         </state>
       </provider>

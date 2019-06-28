@@ -16,6 +16,8 @@
             <Button mnemonicParsing="false" onAction="#saveRecipe" text="Zapisz" />
             <Button mnemonicParsing="false" onAction="#loadRecipe" text="Wczytaj" />
             <Label fx:id="msgLabel" text=" " />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#reset" text="Nowy" />
          </children>
       </HBox>
    </top>

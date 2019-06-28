@@ -234,6 +234,14 @@ public class Controller implements Initializable {
         }
     }
 
+    public void reset() {
+        titleInput.setText("Untitled");
+        liquids.clear();
+        mixPanel.getChildren().clear();
+        mainContainer.getChildren().clear();
+        refreshInfo();
+    }
+
     private void showMsg(String msg) {
         msgLabel.setText(msg);
         new Timeline(new KeyFrame(
