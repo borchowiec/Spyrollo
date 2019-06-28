@@ -102,3 +102,24 @@
     -fx-text-fill: white;
     -fx-font-style: italic;
 }
+
+.arrowBtn {
+    -fx-text-fill: white;
+    -fx-border-width: 0;
+    -fx-min-width: 40px;
+    -fx-max-width: 40px;
+    -fx-min-height: 20px;
+    -fx-max-height: 20px;
+    -fx-font-size: 12px;
+    -fx-font-weight: 900;
+}
+
+.arrowBtn.up {
+    -fx-background-color: #2195f2;
+    -fx-background-radius: 10 5 0 0;
+}
+
+.arrowBtn.down {
+    -fx-background-color: #4cae50;
+    -fx-background-radius: 0 0 10 5;
+}

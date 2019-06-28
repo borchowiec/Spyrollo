@@ -64,6 +64,35 @@ public class Controller implements Initializable {
 
         refreshInfo();
         refreshMixPanel();
+
+        panel.lookup(".up").setOnMouseClicked(event -> {
+            int i1 = mainContainer.getChildren().indexOf(panel);
+            if (i1 > 0) {
+                mainContainer.getChildren().remove(i1);
+                mainContainer.getChildren().add(i1 - 1, panel);
+            }
+
+            int i2 = liquids.indexOf(liquid);
+            if (i2 > 0 && mainContainer.getChildren().get(i1).lookup(".infoInput") == null) {
+                liquids.remove(i2);
+                liquids.add(i2 - 1, liquid);
+                refreshMixPanel();
+            }
+        });
+        panel.lookup(".down").setOnMouseClicked(event -> {
+            int i1 = mainContainer.getChildren().indexOf(panel);
+            if (i1 < mainContainer.getChildren().size() - 1) {
+                mainContainer.getChildren().remove(i1);
+                mainContainer.getChildren().add(i1 + 1, panel);
+            }
+
+            int i2 = liquids.indexOf(liquid);
+            if (i2 < liquids.size() - 1 && mainContainer.getChildren().get(i1).lookup(".infoInput") == null) {
+                liquids.remove(i2);
+                liquids.add(i2 + 1, liquid);
+                refreshMixPanel();
+            }
+        });
     }
 
     public void addAlcohol() {
@@ -102,6 +131,32 @@ public class Controller implements Initializable {
         setUpElement(liquid, panel);
     }
 
+    public void addInfo() {
+        addInfo("Informacja");
+    }
+
+    private void addInfo(String content) {
+        HBox panel = Layout.getInfoPanel();
+        mainContainer.getChildren().add(panel);
+        panel.lookup(".deleteBtn").setOnMouseClicked(event -> mainContainer.getChildren().remove(panel));
+        ((TextField)panel.lookup(".infoInput")).setText(content);
+
+        panel.lookup(".up").setOnMouseClicked(event -> {
+            int i1 = mainContainer.getChildren().indexOf(panel);
+            if (i1 > 0) {
+                mainContainer.getChildren().remove(i1);
+                mainContainer.getChildren().add(i1 - 1, panel);
+            }
+        });
+        panel.lookup(".down").setOnMouseClicked(event -> {
+            int i1 = mainContainer.getChildren().indexOf(panel);
+            if (i1 < mainContainer.getChildren().size() - 1) {
+                mainContainer.getChildren().remove(i1);
+                mainContainer.getChildren().add(i1 + 1, panel);
+            }
+        });
+    }
+
     public void addAlcoholToLiquidList(Liquid liquid) {
         HBox element = Layout.getAlcoholListElement(liquid.getName(), liquid.getPercent());
         liquidsList.getChildren().add(element);
@@ -124,16 +179,6 @@ public class Controller implements Initializable {
             jsonHandler.removeFromLiquidsList(i);
             liquidsList.getChildren().remove(element);
         });
-    }
-
-    public void addInfo() {
-        addInfo("Informacja");
-    }
-
-    private void addInfo(String content) {
-        HBox panel = Layout.getInfoPanel();
-        mainContainer.getChildren().add(panel);
-        panel.lookup(".deleteBtn").setOnMouseClicked(event -> mainContainer.getChildren().remove(panel));
     }
 
     private void refreshInfo() {

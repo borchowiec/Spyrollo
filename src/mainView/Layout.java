@@ -1,11 +1,10 @@
 package mainView;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 import java.util.Random;
@@ -22,6 +21,20 @@ public class Layout {
         panel.setSpacing(15);
         panel.setAlignment(Pos.CENTER);
         panel.getStyleClass().add("panel");
+        return panel;
+    }
+
+    private static VBox getArrowsPanel() {
+        VBox panel = new VBox();
+        panel.setAlignment(Pos.CENTER);
+
+        Button up = new Button("∧");
+        up.getStyleClass().addAll("arrowBtn", "up");
+
+        Button down = new Button("∨");
+        down.getStyleClass().addAll("arrowBtn", "down");
+
+        panel.getChildren().addAll(up, down);
         return panel;
     }
 
@@ -80,6 +93,7 @@ public class Layout {
         percentage.valueProperty().addListener((observable, oldValue, newValue) -> liquid.setPercent(newValue));
 
         panel.getChildren().addAll(
+                getArrowsPanel(),
                 getNameInput(liquid),
                 getAmountSpinner(liquid),
                 new Label("ml"),
@@ -97,6 +111,7 @@ public class Layout {
         HBox panel = getPanel();
 
         panel.getChildren().addAll(
+                getArrowsPanel(),
                 getNameInput(liquid),
                 getAmountSpinner(liquid),
                 new Label("ml"),
@@ -115,7 +130,11 @@ public class Layout {
         TextField info = new TextField("Informacja");
         info.getStyleClass().add("infoInput");
 
-        panel.getChildren().addAll(info, getDeleteButton());
+        panel.getChildren().addAll(
+                getArrowsPanel(),
+                info,
+                getDeleteButton()
+        );
         return panel;
     }
 

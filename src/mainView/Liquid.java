@@ -75,4 +75,9 @@ class Liquid implements Cloneable {
     protected Liquid clone() {
         return new Liquid(name.getValue(), 100, percent.getValue(), color.getValue());
     }
+
+    @Override
+    public String toString() {
+        return name.getValue() + "|" + percentProperty().getValue() + "|" + amountProperty().getValue();
+    }
 }
