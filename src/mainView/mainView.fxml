@@ -15,6 +15,7 @@
             <TextField id="projectTitle" fx:id="titleInput" text="Untitled" />
             <Button mnemonicParsing="false" onAction="#saveRecipe" text="Zapisz" />
             <Button mnemonicParsing="false" onAction="#loadRecipe" text="Wczytaj" />
+            <Button mnemonicParsing="false" onAction="#saveToPdf" text="Zapisz do PDF" />
             <Label fx:id="msgLabel" text=" " />
             <Region HBox.hgrow="ALWAYS" />
             <Button mnemonicParsing="false" onAction="#reset" text="Nowy" />

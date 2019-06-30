@@ -13,7 +13,9 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
+import javafx.util.Pair;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
@@ -278,6 +280,30 @@ public class Controller implements Initializable {
                     addInfo(temp.get("content").getAsString());
                     break;
             }
+        }
+    }
+
+    public void saveToPdf() {
+        try {
+            Pair<Integer, File> option = PdfOptionsFrame.display();
+            if (option != null) {
+                if (option.getKey() == PdfOptionsFrame.AMOUNTS)
+                    PdfHandler.saveAmounts(titleInput.getText(),
+                            (int) amountOfLiquids,
+                            percentageLabel.getText(),
+                            mainContainer,
+                            option.getValue());
+                else if (option.getKey() == PdfOptionsFrame.PROPORTIONS)
+                    PdfHandler.saveProportions(titleInput.getText(),
+                            (int) amountOfLiquids,
+                            percentageLabel.getText(),
+                            mainContainer,
+                            option.getValue());
+                showMsg("Zapisano!");
+            }
+        } catch (IOException e) {
+            showMsg("Nie można zapisać pliku pdf!");
+            e.printStackTrace();
         }
     }
 
