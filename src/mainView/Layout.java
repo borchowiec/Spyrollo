@@ -51,6 +51,7 @@ public class Layout {
         amount.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Short.MAX_VALUE, liquid.getAmount(), 100));
         amount.setEditable(true);
         amount.valueProperty().addListener((observable, oldValue, newValue) -> liquid.setAmount(newValue));
+        setUpSpinner(amount);
         return amount;
     }
 
@@ -83,6 +84,20 @@ public class Layout {
         return delete;
     }
 
+    private static void setUpSpinner(Spinner spinner) {
+        spinner.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*"))
+                spinner.getEditor().setText(newValue.replaceAll("[^\\d]", ""));
+            if (newValue.length() == 0)
+                spinner.getEditor().setText("1");
+        });
+        spinner.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                spinner.increment(0);
+            }
+        });
+    }
+
     public static HBox getAlcoholPanel(Liquid liquid) {
         HBox panel = getPanel();
 
@@ -91,6 +106,7 @@ public class Layout {
         percentage.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, liquid.getPercent()));
         percentage.setEditable(true);
         percentage.valueProperty().addListener((observable, oldValue, newValue) -> liquid.setPercent(newValue));
+        setUpSpinner(percentage);
 
         panel.getChildren().addAll(
                 getArrowsPanel(),

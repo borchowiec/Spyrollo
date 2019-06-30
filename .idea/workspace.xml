@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/pdfbox_app_2_0_16.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/font.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/fontItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mainView/MathTools.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mainView/PdfHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spyrollo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Spyrollo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Spyrollo/mainView/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Spyrollo/mainView/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Spyrollo/mainView/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Spyrollo/mainView/mainView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipes/Untitled.spyr" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/Untitled.spyr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainView/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainView/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainView/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainView/mainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainView/Layout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainView/Layout.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -87,11 +76,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mainView/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="302" column="13" lean-forward="true" selection-start-line="302" selection-start-column="13" selection-end-line="302" selection-end-column="13" />
+            <state relative-caret-position="188">
+              <caret line="108" column="40" lean-forward="true" selection-start-line="108" selection-start-column="40" selection-end-line="108" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -99,47 +88,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mainView/PdfOptionsFrame.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/mainView/Layout.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="29" column="60" selection-start-line="29" selection-start-column="60" selection-end-line="29" selection-end-column="60" />
+            <state relative-caret-position="255">
+              <caret line="59" column="45" selection-start-line="59" selection-start-column="45" selection-end-line="59" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mainView/JsonHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1411">
-              <caret line="95" column="32" selection-start-line="95" selection-start-column="32" selection-end-line="95" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mainView/PdfHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="986">
-              <caret line="70" column="23" selection-start-line="70" selection-start-column="23" selection-end-line="70" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mainView/MathTools.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -173,6 +129,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -192,13 +149,13 @@
         <option value="$PROJECT_DIR$/src/mainView/ColorPicker.java" />
         <option value="$PROJECT_DIR$/src/mainView/JsonHandler.java" />
         <option value="$PROJECT_DIR$/src/mainView/References.java" />
-        <option value="$PROJECT_DIR$/src/mainView/Layout.java" />
         <option value="$PROJECT_DIR$/src/mainView/Liquid.java" />
         <option value="$PROJECT_DIR$/src/mainView/style/style.css" />
         <option value="$PROJECT_DIR$/src/mainView/Math.java" />
         <option value="$PROJECT_DIR$/src/mainView/PdfHandler.java" />
         <option value="$PROJECT_DIR$/src/mainView/PdfOptionsFrame.java" />
         <option value="$PROJECT_DIR$/src/mainView/Controller.java" />
+        <option value="$PROJECT_DIR$/src/mainView/Layout.java" />
       </list>
     </option>
   </component>
@@ -473,12 +430,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90711000" />
+    <option name="totallyTimeSpent" value="91300000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.2442953" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.2442953" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -487,7 +445,7 @@
       <window_info id="UI Designer" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3286119" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -663,8 +621,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mainView/Layout.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="130" column="43" selection-start-line="130" selection-start-column="34" selection-end-line="130" selection-end-column="43" />
+        <state relative-caret-position="255">
+          <caret line="59" column="45" selection-start-line="59" selection-start-column="45" selection-end-line="59" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -727,8 +685,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mainView/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="302" column="13" lean-forward="true" selection-start-line="302" selection-start-column="13" selection-end-line="302" selection-end-column="13" />
+        <state relative-caret-position="188">
+          <caret line="108" column="40" lean-forward="true" selection-start-line="108" selection-start-column="40" selection-end-line="108" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
