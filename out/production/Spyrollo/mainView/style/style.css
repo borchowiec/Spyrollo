@@ -10,6 +10,17 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);
  }
 
+#topPanel .button {
+    -fx-background-color: #6200EE;
+    -fx-text-fill: white;
+    -fx-border-width: 0;
+}
+
+#topPanel .label {
+    -fx-text-fill: white;
+    -fx-font-style: italic;
+}
+
 #projectTitle {
     -fx-control-inner-background: #6200EE;
     -fx-background-color: inherit;
@@ -90,17 +101,6 @@
 .colorPicker {
     -fx-min-width: 50px;
     -fx-max-width: 50px;
-}
-
-#topPanel .button {
-    -fx-background-color: #6200EE;
-    -fx-text-fill: white;
-    -fx-border-width: 0;
-}
-
-#topPanel .label {
-    -fx-text-fill: white;
-    -fx-font-style: italic;
 }
 
 .arrowBtn {

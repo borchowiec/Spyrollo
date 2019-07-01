@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-class Liquid implements Cloneable {
+public class Liquid implements Cloneable {
     private StringProperty name;
     private StringProperty color;
     private IntegerProperty amount;

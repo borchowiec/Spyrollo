@@ -14,6 +14,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
 import javafx.util.Pair;
+import mainView.tools.JsonHandler;
+import mainView.tools.Layout;
+import mainView.tools.PdfHandler;
+import mainView.windows.PdfOptionsFrame;
+import mainView.windows.RecipeChooser;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,10 +27,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static mainView.Layout.*;
+import static mainView.tools.Layout.*;
 
 public class Controller implements Initializable {
-
     public VBox mixPanel;
     public Label amountLabel;
     public Label percentageLabel;

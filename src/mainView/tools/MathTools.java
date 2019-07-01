@@ -1,4 +1,4 @@
-package mainView;
+package mainView.tools;
 
 public class MathTools {
     public static int gcd(int first, int second) {

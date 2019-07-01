@@ -1,4 +1,4 @@
-package mainView;
+package mainView.tools;
 
 import javafx.scene.Node;
 import javafx.scene.control.Spinner;
@@ -15,8 +15,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class PdfHandler {
-
-    private static PDPageContentStream getContent(PDDocument doc, PDPage page, String title, int amount, String percents) throws IOException {
+    private static PDPageContentStream getContent(PDDocument doc, PDPage page,
+                                                  String title, int amount, String percents) throws IOException {
         PDFont font = PDType0Font.load(doc, new File("fonts" + File.separator + "font.ttf"));
         PDFont fontItalic = PDType0Font.load(doc, new File("fonts" + File.separator + "fontItalic.ttf"));
 

@@ -1,4 +1,4 @@
-package mainView;
+package mainView.tools;
 
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import mainView.Liquid;
 
 import java.util.Random;
 
@@ -45,14 +46,45 @@ public class Layout {
         return name;
     }
 
+    private static void setUpSpinner(Spinner spinner) {
+        spinner.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*"))
+                spinner.getEditor().setText(newValue.replaceAll("[^\\d]", ""));
+            if (newValue.length() == 0)
+                spinner.getEditor().setText("1");
+        });
+        spinner.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                spinner.increment(0);
+            }
+        });
+    }
+
     private static Spinner<Integer> getAmountSpinner(Liquid liquid) {
         Spinner<Integer> amount = new Spinner<>();
         amount.getStyleClass().add("amountSpinner");
-        amount.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Short.MAX_VALUE, liquid.getAmount(), 100));
+        amount.setValueFactory(
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(
+                        1,
+                        Short.MAX_VALUE,
+                        liquid.getAmount(),
+                        100
+                )
+        );
         amount.setEditable(true);
         amount.valueProperty().addListener((observable, oldValue, newValue) -> liquid.setAmount(newValue));
         setUpSpinner(amount);
         return amount;
+    }
+
+    private static Spinner<Integer> getPercentageSpinner(Liquid liquid) {
+        Spinner<Integer> percentage = new Spinner<>();
+        percentage.getStyleClass().add("percentsSpinner");
+        percentage.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, liquid.getPercent()));
+        percentage.setEditable(true);
+        percentage.valueProperty().addListener((observable, oldValue, newValue) -> liquid.setPercent(newValue));
+        setUpSpinner(percentage);
+        return percentage;
     }
 
     private static ColorPicker getColorPicker(Liquid liquid) {
@@ -74,7 +106,6 @@ public class Layout {
     private static Button getSaveButton() {
         Button save = new Button("Zapisz");
         save.getStyleClass().add("saveBtn");
-
         return save;
     }
 
@@ -84,48 +115,24 @@ public class Layout {
         return delete;
     }
 
-    private static void setUpSpinner(Spinner spinner) {
-        spinner.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*"))
-                spinner.getEditor().setText(newValue.replaceAll("[^\\d]", ""));
-            if (newValue.length() == 0)
-                spinner.getEditor().setText("1");
-        });
-        spinner.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) {
-                spinner.increment(0);
-            }
-        });
-    }
-
     public static HBox getAlcoholPanel(Liquid liquid) {
         HBox panel = getPanel();
-
-        Spinner<Integer> percentage = new Spinner<>();
-        percentage.getStyleClass().add("percentsSpinner");
-        percentage.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, liquid.getPercent()));
-        percentage.setEditable(true);
-        percentage.valueProperty().addListener((observable, oldValue, newValue) -> liquid.setPercent(newValue));
-        setUpSpinner(percentage);
-
         panel.getChildren().addAll(
                 getArrowsPanel(),
                 getNameInput(liquid),
                 getAmountSpinner(liquid),
                 new Label("ml"),
-                percentage,
+                getPercentageSpinner(liquid),
                 new Label("%"),
                 getColorPicker(liquid),
                 getSaveButton(),
                 getDeleteButton()
         );
-
         return panel;
     }
 
     public static HBox getOtherPanel(Liquid liquid) {
         HBox panel = getPanel();
-
         panel.getChildren().addAll(
                 getArrowsPanel(),
                 getNameInput(liquid),
@@ -135,7 +142,6 @@ public class Layout {
                 getSaveButton(),
                 getDeleteButton()
         );
-
         return panel;
     }
 
@@ -154,19 +160,7 @@ public class Layout {
         return panel;
     }
 
-    public static HBox getAlcoholListElement(String name, int percents) {
-        HBox element = new HBox();
-
-        Label nameLabel = new Label(name + " " + percents+"%");
-        nameLabel.setStyle("-fx-pref-width: 1000px");
-        nameLabel.setCursor(Cursor.HAND);
-
-        element.getChildren().addAll(nameLabel, getDeleteButton());
-        element.setAlignment(Pos.CENTER);
-        return element;
-    }
-
-    public static HBox getOtherListElement(String name) {
+    private static HBox getListElement(String name) {
         HBox element = new HBox();
 
         Label nameLabel = new Label(name);
@@ -178,7 +172,15 @@ public class Layout {
         return element;
     }
 
-    static String getRandomColor() {
+    public static HBox getAlcoholListElement(String name, int percents) {
+        return getListElement(name + " " + percents+"%");
+    }
+
+    public static HBox getOtherListElement(String name) {
+        return getListElement(name);
+    }
+
+    public static String getRandomColor() {
         int i = new Random().nextInt(colors.length);
         return colors[i];
     }

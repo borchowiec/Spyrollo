@@ -1,8 +1,7 @@
-package mainView;
+package mainView.windows;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -10,7 +9,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
@@ -24,10 +22,7 @@ public class PdfOptionsFrame {
 
     public static Pair<Integer, File> display() {
         properties = new Pair<>(AMOUNTS, new File("Untitled.pdf"));
-        Stage window = new Stage();
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Zapisz do PDF");
-        window.setMinWidth(450);
+        Stage window = BasicWindow.getBasicWindow("Zapisz do PDF");
         window.setOnCloseRequest(event -> properties = null);
 
         ToggleGroup group = new ToggleGroup();
@@ -67,9 +62,7 @@ public class PdfOptionsFrame {
         layout.setPadding(new Insets(5));
         layout.getChildren().addAll(amountsRadio, proportionsRadio, fileBox, saveBtn);
 
-        Scene scene = new Scene(layout);
-        window.setScene(scene);
-        window.showAndWait();
+        BasicWindow.setScene(window, layout);
 
         return properties;
     }

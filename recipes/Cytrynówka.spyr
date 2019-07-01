@@ -1,1 +1,1 @@
-{"title":"Cytrynówka","elements":[{"type":0,"name":"Wódka","percents":40,"amount":1000,"color":"#b6d0fb"},{"type":1,"name":"Sok z cytryny","amount":600,"color":"#fce838"},{"type":1,"name":"Woda z cukrem","amount":100,"color":"#cacaca"},{"type":2,"content":"Wymieszać"}]}
+{"title":"Cytrynówka","elements":[{"name":"Wódka","amount":1000,"color":"#b3cdf8","percents":40,"type":0},{"name":"Sok z cytryny","amount":600,"color":"#f9e535","type":1},{"name":"Woda z cukrem","amount":100,"color":"#c7c7c7","type":1},{"type":2,"content":"Wymieszać"}]}

@@ -1,4 +1,4 @@
-package mainView;
+package mainView.tools;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -9,23 +9,28 @@ import javafx.scene.Node;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
+import mainView.Controller;
+import mainView.Liquid;
 
 import java.io.*;
 
-import static mainView.Layout.*;
+import static mainView.tools.Layout.*;
 
 public class JsonHandler {
     private JsonObject liquidsJson;
 
     public JsonHandler() {
         File jsonFile = new File("liquids.json");
-        if (!jsonFile.exists()) {
-            liquidsJson = new JsonObject();
-            JsonArray jsonArray = new JsonArray();
-            liquidsJson.add("liquids", jsonArray);
-            addAlcoholToLiquids("Wódka", 40, "#bad4ff");
-            addAlcoholToLiquids("Piwo", 5, "#ffe122");
-        }
+        if (!jsonFile.exists())
+            createBasicLiquidsJson();
+    }
+
+    private void createBasicLiquidsJson() {
+        liquidsJson = new JsonObject();
+        JsonArray jsonArray = new JsonArray();
+        liquidsJson.add("liquids", jsonArray);
+        addAlcoholToLiquids("Wódka", 40, "#bad4ff");
+        addAlcoholToLiquids("Piwo", 5, "#ffe122");
     }
 
     public void addAlcoholToLiquids(String name, int percent, String color) {
@@ -43,17 +48,17 @@ public class JsonHandler {
         saveLiquids();
     }
 
-    public void removeFromLiquidsList(int i) {
-        liquidsJson.get("liquids").getAsJsonArray().remove(i);
-        saveLiquids();
-    }
-
     private JsonObject getBasicElement(int type, String name, String color) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("type", type);
         jsonObject.addProperty("name", name);
         jsonObject.addProperty("color", color);
         return jsonObject;
+    }
+
+    public void removeFromLiquidsList(int i) {
+        liquidsJson.get("liquids").getAsJsonArray().remove(i);
+        saveLiquids();
     }
 
     public static JsonObject toJsonObject(File file) {
@@ -64,11 +69,13 @@ public class JsonHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new JsonObject();
+        return null;
     }
 
     public void loadLiquids(Controller controller) {
         liquidsJson = toJsonObject(new File("liquids.json"));
+        if (liquidsJson == null)
+            createBasicLiquidsJson();
 
         JsonArray array = liquidsJson.getAsJsonArray("liquids");
 
@@ -111,26 +118,22 @@ public class JsonHandler {
 
         for (Node el : elements) {
             JsonObject temp = new JsonObject();
-            if (el.lookup(".percentsSpinner") != null) {
+            if (el.lookup(".amountSpinner") != null) {
                 String color = Layout.toRGB(((ColorPicker)el.lookup(".colorPicker")).getValue());
-                temp.addProperty("type", ALCOHOL);
-                temp.addProperty("name", ((TextField) el.lookup(".nameInput")).getText());
-                temp.addProperty("percents", (int) ((Spinner) el.lookup(".percentsSpinner")).getValue());
-                temp.addProperty("amount", (int) ((Spinner) el.lookup(".amountSpinner")).getValue());
-                temp.addProperty("color", color);
-            }
-            else if (el.lookup(".amountSpinner") != null) {
-                String color = Layout.toRGB(((ColorPicker)el.lookup(".colorPicker")).getValue());
-                temp.addProperty("type", OTHER);
                 temp.addProperty("name", ((TextField) el.lookup(".nameInput")).getText());
                 temp.addProperty("amount", (int) ((Spinner) el.lookup(".amountSpinner")).getValue());
                 temp.addProperty("color", color);
+                if (el.lookup(".percentsSpinner") != null) {
+                    temp.addProperty("percents", (int) ((Spinner) el.lookup(".percentsSpinner")).getValue());
+                    temp.addProperty("type", ALCOHOL);
+                }
+                else
+                    temp.addProperty("type", OTHER);
             }
             else {
                 temp.addProperty("type", INFO);
                 temp.addProperty("content", ((TextField) el.lookup(".infoInput")).getText());
             }
-
             array.add(temp);
         }
 
