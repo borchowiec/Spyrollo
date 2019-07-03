@@ -14,12 +14,26 @@ import javafx.util.Pair;
 
 import java.io.File;
 
-public class PdfOptionsFrame {
+/**
+ * This class is responsible for creating and displaying window, where you can set up properties of saving pdf e.g.
+ * if liquids should be in amounts or proportions, or path to pdf.
+ * @author Patryk Borchowiec
+ */
+public class PdfOptionsWindow {
     public static int AMOUNTS = 0;
     public static int PROPORTIONS = 1;
 
+    /**
+     * This pair is a value that will be returns after displaying window.
+     * Key is a type of displaying liquids. In amounts '0' or proportions '1'.
+     * File is a path of pdf.
+     */
     private static Pair<Integer, File> properties;
 
+    /**
+     * This method creates, displays window and waits for choosing options.
+     * @return Chosen properties
+     */
     public static Pair<Integer, File> display() {
         properties = new Pair<>(AMOUNTS, new File("Untitled.pdf"));
         Stage window = BasicWindow.getBasicWindow("Zapisz do PDF");

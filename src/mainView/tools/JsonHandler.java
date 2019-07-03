@@ -16,6 +16,10 @@ import java.io.*;
 
 import static mainView.tools.Layout.*;
 
+/**
+ * This class has methods that solves problems with json e.g. saving or loading data.
+ * @author Patryk Borchowiec
+ */
 public class JsonHandler {
     private JsonObject liquidsJson;
 
@@ -25,6 +29,9 @@ public class JsonHandler {
             createBasicLiquidsJson();
     }
 
+    /**
+     * This method creates basic json that contains list of basic liquids.
+     */
     private void createBasicLiquidsJson() {
         liquidsJson = new JsonObject();
         JsonArray jsonArray = new JsonArray();
@@ -33,6 +40,12 @@ public class JsonHandler {
         addAlcoholToLiquids("Piwo", 5, "#ffe122");
     }
 
+    /**
+     * This method adds to liquids list and save into file, new alcohol.
+     * @param name Name of alcohol
+     * @param percent Percentage of alcohol
+     * @param color Color of alcohol
+     */
     public void addAlcoholToLiquids(String name, int percent, String color) {
         JsonArray jsonArray = liquidsJson.getAsJsonArray("liquids");
         JsonObject jsonAlcohol = getBasicElement(ALCOHOL, name, color);
@@ -41,6 +54,11 @@ public class JsonHandler {
         saveLiquids();
     }
 
+    /**
+     * This method adds to liquids list and save into file, new liquid.
+     * @param name Name of liquid
+     * @param color Color of liquid
+     */
     public void addOtherToLiquids(String name, String color) {
         JsonArray jsonArray = liquidsJson.getAsJsonArray("liquids");
         JsonObject jsonOther = getBasicElement(OTHER, name, color);
@@ -48,6 +66,13 @@ public class JsonHandler {
         saveLiquids();
     }
 
+    /**
+     * This method creates basic element of liquids list.
+     * @param type Type of liquid. Alcohol or other
+     * @param name Name of liquid
+     * @param color Color of liquid
+     * @return Basic json element
+     */
     private JsonObject getBasicElement(int type, String name, String color) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("type", type);
@@ -56,11 +81,20 @@ public class JsonHandler {
         return jsonObject;
     }
 
+    /**
+     * This method removes element from liquids list
+     * @param i Index of the removed element
+     */
     public void removeFromLiquidsList(int i) {
         liquidsJson.get("liquids").getAsJsonArray().remove(i);
         saveLiquids();
     }
 
+    /**
+     * Converts file into json object.
+     * @param file File that you want to convert
+     * @return Json object
+     */
     public static JsonObject toJsonObject(File file) {
         try {
             JsonParser parser = new JsonParser();
@@ -72,6 +106,10 @@ public class JsonHandler {
         return null;
     }
 
+    /**
+     * This methods loads liquids from liquids.json and puts it into liquids list.
+     * @param controller Controller that has liquid list.
+     */
     public void loadLiquids(Controller controller) {
         liquidsJson = toJsonObject(new File("liquids.json"));
         if (liquidsJson == null)
@@ -100,6 +138,9 @@ public class JsonHandler {
         }
     }
 
+    /**
+     * This method save liquids list into liquids.json file
+     */
     private void saveLiquids() {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("liquids.json"));
@@ -110,6 +151,12 @@ public class JsonHandler {
         }
     }
 
+    /**
+     * This method saves recipe into recipes directory. Recipes has <code>.spyr</code> extension.
+     * @param title Title of recipe
+     * @param elements List of elements, such as alcohol, other liquids or information.
+     * @throws IOException
+     */
     public void saveRecipe(String title, ObservableList<Node> elements) throws IOException {
         JsonObject json = new JsonObject();
         JsonArray array = new JsonArray();

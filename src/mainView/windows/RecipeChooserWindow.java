@@ -10,9 +10,20 @@ import mainView.tools.JsonHandler;
 import java.io.File;
 import java.util.Objects;
 
-public class RecipeChooser {
+/**
+ * This class is responsible for creating and displaying window, where you can choose saved recipe and load it.
+ * @author Patryk Borchowiec
+ */
+public class RecipeChooserWindow {
+    /**
+     * This variable is a value that will be returns after displaying window.
+     */
     private static JsonObject selectedItem;
 
+    /**
+     * This method creates, displays window and waits for choosing recipe.
+     * @return Chosen recipe in json.
+     */
     public static JsonObject display() {
         selectedItem = null;
         Stage window = BasicWindow.getBasicWindow("Wybierz przepis");

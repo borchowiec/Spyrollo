@@ -12,11 +12,20 @@ import java.util.Random;
 
 import static mainView.References.colors;
 
+/**
+ * This class contains methods that creates and set ups layout elements.
+ * @author Patryk Borchowiec
+ */
 public class Layout {
     public static final int ALCOHOL = 0;
     public static final int OTHER = 1;
     public static final int INFO = 2;
 
+    /**
+     * This method creates basic panel which is a container for other nodes. Used in main container to represents
+     * alcohol, other liquids and information.
+     * @return Basic panel
+     */
     private static HBox getPanel() {
         HBox panel = new HBox();
         panel.setSpacing(15);
@@ -25,6 +34,10 @@ public class Layout {
         return panel;
     }
 
+    /**
+     * This method creates <code>VBox</code> that contains arrow buttons that moves whole panel up and down. Used in main container.
+     * @return VBox with arrows
+     */
     private static VBox getArrowsPanel() {
         VBox panel = new VBox();
         panel.setAlignment(Pos.CENTER);
@@ -39,6 +52,11 @@ public class Layout {
         return panel;
     }
 
+    /**
+     * This method creates text field that should contain name of alcohol or other liquids. Used in main container.
+     * @param liquid The fluid whose name will be updated by this text field.
+     * @return Text field that contains name of liquid.
+     */
     private static TextField getNameInput(Liquid liquid) {
         TextField name = new TextField(liquid.getName());
         name.getStyleClass().add("nameInput");
@@ -46,6 +64,10 @@ public class Layout {
         return name;
     }
 
+    /**
+     * This method set ups spinners.
+     * @param spinner Spinner to set up.
+     */
     private static void setUpSpinner(Spinner spinner) {
         spinner.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*"))
@@ -60,6 +82,11 @@ public class Layout {
         });
     }
 
+    /**
+     * This method creates spinner that represents amount of liquid in recipe. Used in main container.
+     * @param liquid The fluid whose amount will be updated by this spinner.
+     * @return Spinner that represents amount.
+     */
     private static Spinner<Integer> getAmountSpinner(Liquid liquid) {
         Spinner<Integer> amount = new Spinner<>();
         amount.getStyleClass().add("amountSpinner");
@@ -77,6 +104,11 @@ public class Layout {
         return amount;
     }
 
+    /**
+     * This method creates spinner that represents percentage amount of alcohol of liquid in recipe. Used in main container.
+     * @param liquid The fluid whose percentage amount of alcohol will be updated by this spinner.
+     * @return Spinner that represents percentage amount of alcohol.
+     */
     private static Spinner<Integer> getPercentageSpinner(Liquid liquid) {
         Spinner<Integer> percentage = new Spinner<>();
         percentage.getStyleClass().add("percentsSpinner");
@@ -87,6 +119,11 @@ public class Layout {
         return percentage;
     }
 
+    /**
+     * This method creates color picker button that represents color of liquid. Used in main container.
+     * @param liquid The fluid whose color will be updated by this color picker.
+     * @return Color picker that represents color of alcohol.
+     */
     private static ColorPicker getColorPicker(Liquid liquid) {
         ColorPicker color = new ColorPicker();
         color.getStyleClass().add("colorPicker");
@@ -103,18 +140,32 @@ public class Layout {
         return color;
     }
 
+    /**
+     * This method creates button that saves liquid in liquids list. Used in main container
+     * @return Save button
+     */
     private static Button getSaveButton() {
         Button save = new Button("Zapisz");
         save.getStyleClass().add("saveBtn");
         return save;
     }
 
+    /**
+     * This method creates button that deletes alcohol, liquid or information from main container.
+     * Used in main container.
+     * @return Delete button
+     */
     private static Button getDeleteButton() {
         Button delete = new Button("Usuń");
         delete.getStyleClass().add("deleteBtn");
         return delete;
     }
 
+    /**
+     * This method creates panel that represents alcohol in main container.
+     * @param liquid The liquid which is represented by the panel.
+     * @return Alcohol panel
+     */
     public static HBox getAlcoholPanel(Liquid liquid) {
         HBox panel = getPanel();
         panel.getChildren().addAll(
@@ -131,6 +182,11 @@ public class Layout {
         return panel;
     }
 
+    /**
+     * This method creates panel that represents other liquids in main container.
+     * @param liquid The liquid which is represented by the panel.
+     * @return Other liquid panel
+     */
     public static HBox getOtherPanel(Liquid liquid) {
         HBox panel = getPanel();
         panel.getChildren().addAll(
@@ -145,6 +201,10 @@ public class Layout {
         return panel;
     }
 
+    /**
+     * This method creates panel that contains information.
+     * @return Information panel
+     */
     public static HBox getInfoPanel() {
         HBox panel = new HBox();
         panel.getStyleClass().add("panel");
@@ -160,10 +220,15 @@ public class Layout {
         return panel;
     }
 
-    private static HBox getListElement(String name) {
+    /**
+     * Return built element of liquids list which is a HBox.
+     * @param title Title that display on element.
+     * @return Element of liquids list
+     */
+    private static HBox getListElement(String title) {
         HBox element = new HBox();
 
-        Label nameLabel = new Label(name);
+        Label nameLabel = new Label(title);
         nameLabel.setStyle("-fx-pref-width: 1000px");
         nameLabel.setCursor(Cursor.HAND);
 
@@ -172,19 +237,39 @@ public class Layout {
         return element;
     }
 
+    /**
+     * Creates element of liquids list which is a alcohol.
+     * @param name Name of alcohol
+     * @param percents Percentage amount of alcohol
+     * @return Element of liquids list
+     */
     public static HBox getAlcoholListElement(String name, int percents) {
         return getListElement(name + " " + percents+"%");
     }
 
+    /**
+     * Creates element of liquids list which is a other liquid.
+     * @param name Name of liquid
+     * @return Element of liquids list
+     */
     public static HBox getOtherListElement(String name) {
         return getListElement(name);
     }
 
+    /**
+     * This method return random color from basic {@link mainView.References#colors colors}
+     * @return Random color
+     */
     public static String getRandomColor() {
         int i = new Random().nextInt(colors.length);
         return colors[i];
     }
 
+    /**
+     * This method converts Color to String. String color will be in hexadecimal form e.g. <code>#f112a0</code>.
+     * @param color Color to convert
+     * @return Color in hexadecimal form
+     */
     public static String toRGB(Color color) {
         String temp;
 
@@ -207,6 +292,11 @@ public class Layout {
         return sb.toString();
     }
 
+    /**
+     * This method converts String color (must be in hexadecimal form e.g. <code>#ef0011</code>) to Color.
+     * @param color Color to convert
+     * @return Converted color
+     */
     public static Color toColor(String color) {
         return new Color(
                 Integer.valueOf( color.substring( 1, 3 ), 16) / 256.0,

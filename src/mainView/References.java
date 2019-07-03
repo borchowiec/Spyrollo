@@ -1,6 +1,14 @@
 package mainView;
 
+/**
+ * This class stores basic variables such as palette of colors.
+ * @author Patryk Borchowiec
+ */
 public class References {
+
+    /**
+     * Basic palette of colors.
+     */
     public static final String[] colors = {
             "#F44336",
             "#E91E63",

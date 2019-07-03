@@ -14,7 +14,21 @@ import org.apache.pdfbox.pdmodel.font.PDType0Font;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * This class contains methods that can save data into pdf files in different ways.
+ * @author Patryk Borchowiec
+ */
 public class PdfHandler {
+    /**
+     * This method creates, set ups and returns <code>PDPageContentStream</code>.
+     * @param doc Document
+     * @param page First page of document
+     * @param title Title of alcohol
+     * @param amount Amount of whole alcohol
+     * @param percents Percentage of alcohol
+     * @return Set ups content
+     * @throws IOException
+     */
     private static PDPageContentStream getContent(PDDocument doc, PDPage page,
                                                   String title, int amount, String percents) throws IOException {
         PDFont font = PDType0Font.load(doc, new File("fonts" + File.separator + "font.ttf"));
@@ -41,6 +55,15 @@ public class PdfHandler {
         return content;
     }
 
+    /**
+     * This method saves recipe with amounts in ml.
+     * @param title Title of alcohol
+     * @param amount Amount of whole alcohol
+     * @param percents Percentage of alcohol
+     * @param mainContainer Container that contains alcohol, other liquids and information.
+     * @param file The place where you want to save pdf file.
+     * @throws IOException
+     */
     public static void saveAmounts(String title, int amount, String percents, VBox mainContainer, File file) throws IOException {
         PDDocument doc = new PDDocument();
         PDPage page = new PDPage();
@@ -66,6 +89,15 @@ public class PdfHandler {
         doc.close();
     }
 
+    /**
+     * This method saves recipe with proportions.
+     * @param title Title of alcohol
+     * @param amount Amount of whole alcohol
+     * @param percents Percentage of alcohol
+     * @param mainContainer Container that contains alcohol, other liquids and information.
+     * @param file The place where you want to save pdf file.
+     * @throws IOException
+     */
     public static void saveProportions(String title, int amount, String percents, VBox mainContainer, File file) throws IOException {
         PDDocument doc = new PDDocument();
         PDPage page = new PDPage();

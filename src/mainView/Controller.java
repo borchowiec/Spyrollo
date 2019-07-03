@@ -17,8 +17,8 @@ import javafx.util.Pair;
 import mainView.tools.JsonHandler;
 import mainView.tools.Layout;
 import mainView.tools.PdfHandler;
-import mainView.windows.PdfOptionsFrame;
-import mainView.windows.RecipeChooser;
+import mainView.windows.PdfOptionsWindow;
+import mainView.windows.RecipeChooserWindow;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +29,10 @@ import java.util.ResourceBundle;
 
 import static mainView.tools.Layout.*;
 
+/**
+ * This class is responsible for controlling whole application e.g. event handling.
+ * @author Patryk Borchowiec
+ */
 public class Controller implements Initializable {
     public VBox mixPanel;
     public Label amountLabel;
@@ -53,6 +57,11 @@ public class Controller implements Initializable {
         jsonHandler.loadLiquids(this);
     }
 
+    /**
+     * This methods setups element of main container which is alcohol or other liquid e.g. makes buttons working.
+     * @param liquid Liquid of panel
+     * @param panel Panel that represents liquid
+     */
     private void setUpElement(Liquid liquid, HBox panel) {
         liquids.add(liquid);
         mainContainer.getChildren().add(panel);
@@ -101,11 +110,18 @@ public class Controller implements Initializable {
         });
     }
 
+    /**
+     * This method adds alcohol's panel into main container, with default information.
+     */
     public void addAlcohol() {
         Liquid liquid = new Liquid("Alkohol", 100, 0, Layout.getRandomColor());
         addAlcohol(liquid);
     }
 
+    /**
+     * This method adds alcohol's panel into main container.
+     * @param liquid Alcohol that you want ot add
+     */
     public void addAlcohol(Liquid liquid) {
         HBox panel = Layout.getAlcoholPanel(liquid);
         liquid.percentProperty().addListener((observable, oldValue, newValue) -> refreshInfo());
@@ -120,11 +136,18 @@ public class Controller implements Initializable {
         setUpElement(liquid, panel);
     }
 
+    /**
+     * This method adds other liquid's panel into main container, with default information.
+     */
     public void addOther() {
         Liquid liquid = new Liquid("Napój", 100, 0, Layout.getRandomColor());
         addOther(liquid);
     }
 
+    /**
+     * This method adds other liquid's panel into main container.
+     * @param liquid Liquid that you want to add.
+     */
     public void addOther(Liquid liquid) {
         HBox panel = Layout.getOtherPanel(liquid);
         panel.lookup(".saveBtn").setOnMouseClicked(event -> {
@@ -137,10 +160,17 @@ public class Controller implements Initializable {
         setUpElement(liquid, panel);
     }
 
+    /**
+     * This method adds information panel into main container, with default content.
+     */
     public void addInfo() {
         addInfo("Informacja");
     }
 
+    /**
+     * This method adds information panel into main container.
+     * @param content Information
+     */
     private void addInfo(String content) {
         HBox panel = Layout.getInfoPanel();
         mainContainer.getChildren().add(panel);
@@ -163,6 +193,10 @@ public class Controller implements Initializable {
         });
     }
 
+    /**
+     * This method adds alcohol into basic liquid list.
+     * @param liquid Alcohol that you want to add.
+     */
     public void addAlcoholToLiquidList(Liquid liquid) {
         HBox element = Layout.getAlcoholListElement(liquid.getName(), liquid.getPercent());
         liquidsList.getChildren().add(element);
@@ -175,6 +209,10 @@ public class Controller implements Initializable {
         });
     }
 
+    /**
+     * This method adds other liquid into basic liquid list.
+     * @param liquid Liquid that you want to add.
+     */
     public void addOtherToLiquidList(Liquid liquid) {
         HBox element = Layout.getOtherListElement(liquid.getName());
         liquidsList.getChildren().add(element);
@@ -187,6 +225,9 @@ public class Controller implements Initializable {
         });
     }
 
+    /**
+     * This method recounts information such as amount of liquids or percentage of alcohol.
+     */
     private void refreshInfo() {
         double alcohol = 0;
         double other = 0;
@@ -209,6 +250,9 @@ public class Controller implements Initializable {
         }
     }
 
+    /**
+     * This method recount amounts and refreshes mix panel.
+     */
     private void refreshMixPanel() {
         mixPanel.getChildren().clear();
         GridPane gridPane = new GridPane();
@@ -239,6 +283,9 @@ public class Controller implements Initializable {
         mixPanel.getChildren().add(gridPane);
     }
 
+    /**
+     * This method calls methods to save recipe.
+     */
     public void saveRecipe() {
         try {
             jsonHandler.saveRecipe(titleInput.getText(), mainContainer.getChildren());
@@ -249,55 +296,64 @@ public class Controller implements Initializable {
         }
     }
 
+    /**
+     * This method calls {@link RecipeChooserWindow#display()} method and if returned value isn't null, then loads data
+     * and set ups saved recipe.
+     */
     public void loadRecipe() {
-        JsonObject json = RecipeChooser.display();
-        titleInput.setText(json.get("title").getAsString());
-        JsonArray elements = json.getAsJsonArray("elements");
+        JsonObject json = RecipeChooserWindow.display();
+        if (json != null) {
+            titleInput.setText(json.get("title").getAsString());
+            JsonArray elements = json.getAsJsonArray("elements");
 
-        mainContainer.getChildren().clear();
-        mixPanel.getChildren().clear();
-        liquids.clear();
+            mainContainer.getChildren().clear();
+            mixPanel.getChildren().clear();
+            liquids.clear();
 
-        for (JsonElement el : elements) {
-            JsonObject temp = el.getAsJsonObject();
-            Liquid liquid;
-            switch (temp.get("type").getAsInt()) {
-                case ALCOHOL:
-                    liquid = new Liquid(
-                            temp.get("name").getAsString(),
-                            temp.get("amount").getAsInt(),
-                            temp.get("percents").getAsInt(),
-                            temp.get("color").getAsString()
-                    );
-                    addAlcohol(liquid);
-                    break;
-                case OTHER:
-                    liquid = new Liquid(
-                            temp.get("name").getAsString(),
-                            temp.get("amount").getAsInt(),
-                            0,
-                            temp.get("color").getAsString()
-                    );
-                    addOther(liquid);
-                    break;
-                case INFO:
-                    addInfo(temp.get("content").getAsString());
-                    break;
+            for (JsonElement el : elements) {
+                JsonObject temp = el.getAsJsonObject();
+                Liquid liquid;
+                switch (temp.get("type").getAsInt()) {
+                    case ALCOHOL:
+                        liquid = new Liquid(
+                                temp.get("name").getAsString(),
+                                temp.get("amount").getAsInt(),
+                                temp.get("percents").getAsInt(),
+                                temp.get("color").getAsString()
+                        );
+                        addAlcohol(liquid);
+                        break;
+                    case OTHER:
+                        liquid = new Liquid(
+                                temp.get("name").getAsString(),
+                                temp.get("amount").getAsInt(),
+                                0,
+                                temp.get("color").getAsString()
+                        );
+                        addOther(liquid);
+                        break;
+                    case INFO:
+                        addInfo(temp.get("content").getAsString());
+                        break;
+                }
             }
         }
     }
 
+    /**
+     * This method calls proper methods to save recipe into pdf.
+     */
     public void saveToPdf() {
         try {
-            Pair<Integer, File> option = PdfOptionsFrame.display();
+            Pair<Integer, File> option = PdfOptionsWindow.display();
             if (option != null) {
-                if (option.getKey() == PdfOptionsFrame.AMOUNTS)
+                if (option.getKey() == PdfOptionsWindow.AMOUNTS)
                     PdfHandler.saveAmounts(titleInput.getText(),
                             (int) amountOfLiquids,
                             percentageLabel.getText(),
                             mainContainer,
                             option.getValue());
-                else if (option.getKey() == PdfOptionsFrame.PROPORTIONS)
+                else if (option.getKey() == PdfOptionsWindow.PROPORTIONS)
                     PdfHandler.saveProportions(titleInput.getText(),
                             (int) amountOfLiquids,
                             percentageLabel.getText(),
@@ -311,6 +367,9 @@ public class Controller implements Initializable {
         }
     }
 
+    /**
+     * This method resets whole recipe and set ups default settings
+     */
     public void reset() {
         titleInput.setText("Untitled");
         liquids.clear();
@@ -319,6 +378,10 @@ public class Controller implements Initializable {
         refreshInfo();
     }
 
+    /**
+     * This method show message in top bar for a specific time.
+     * @param msg Message that will be shown.
+     */
     private void showMsg(String msg) {
         msgLabel.setText(msg);
         new Timeline(new KeyFrame(

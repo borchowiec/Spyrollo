@@ -5,6 +5,10 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+/**
+ * This class represents liquids. Contains information about name, color, amount or percentage of alcohol.
+ * @author Patryk Borchowiec
+ */
 public class Liquid implements Cloneable {
     private StringProperty name;
     private StringProperty color;
@@ -16,6 +20,12 @@ public class Liquid implements Cloneable {
         this("", 0, 0, "");
     }
 
+    /**
+     * @param name Name of liquid
+     * @param amount Amount of liquid
+     * @param percent Percentage amount of alcohol in liquid
+     * @param color Color of liquid
+     */
     public Liquid(String name, int amount, int percent, String color) {
         this.name = new SimpleStringProperty(name);
         this.amount = new SimpleIntegerProperty(amount);
