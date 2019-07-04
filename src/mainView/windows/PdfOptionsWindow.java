@@ -7,6 +7,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -50,12 +51,14 @@ public class PdfOptionsWindow {
 
         Button saveBtn = new Button("Zapisz");
         saveBtn.setOnAction(event -> window.close());
+        saveBtn.getStyleClass().add("saveBtn");
 
         HBox fileBox = new HBox();
         fileBox.setAlignment(Pos.CENTER);
         TextField path = new TextField(properties.getValue().getPath());
         path.setEditable(false);
         path.setMinWidth(300);
+
         Button fileChooserBtn = new Button("Zapisz do...");
         fileChooserBtn.setOnAction(event -> {
             FileChooser fileChooser = new FileChooser();
@@ -69,12 +72,17 @@ public class PdfOptionsWindow {
                 path.setText(temp.getPath());
             }
         });
+        fileChooserBtn.getStyleClass().add("btn");
+        fileChooserBtn.setStyle("-fx-background-color: #388e3c");
         fileBox.getChildren().addAll(path, fileChooserBtn);
+
+        Region spacer = new Region();
+        spacer.setMinHeight(15);
 
         VBox layout = new VBox(5);
         layout.setAlignment(Pos.CENTER);
         layout.setPadding(new Insets(5));
-        layout.getChildren().addAll(amountsRadio, proportionsRadio, fileBox, saveBtn);
+        layout.getChildren().addAll(amountsRadio, proportionsRadio, spacer, fileBox, saveBtn);
 
         BasicWindow.setScene(window, layout);
 

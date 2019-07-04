@@ -30,6 +30,7 @@ class BasicWindow {
      */
     static void setScene(Stage window, Parent layout) {
         Scene scene = new Scene(layout);
+        scene.getStylesheets().add("mainView/style/style.css");
         window.setScene(scene);
         window.showAndWait();
     }

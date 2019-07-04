@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import mainView.Liquid;
 
 import java.util.Random;
@@ -137,6 +138,7 @@ public class Layout {
             color.setStyle("-fx-background-color: " + liquid.getColor());
         });
         color.setValue(toColor(liquid.getColor()));
+
         return color;
     }
 

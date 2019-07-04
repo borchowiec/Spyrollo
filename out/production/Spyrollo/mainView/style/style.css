@@ -57,6 +57,11 @@
     -fx-max-width: 35px;
 }
 
+.color-picker > .color-picker-label > .picker-color > .picker-color-rect {
+    -fx-stroke: null;
+    -fx-fill : null;
+}
+
 .nameInput {
     -fx-control-inner-background: #ffffff;
     -fx-background-color: inherit;
@@ -85,6 +90,7 @@
 }
 
 .saveBtn {
+    -fx-graphic: url('../../../img/save.png');
     -fx-background-color: #6200EE;
     -fx-text-fill: white;
     -fx-min-width: 90px;
