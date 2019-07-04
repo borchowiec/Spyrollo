@@ -2,26 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Spyrollo/mainView/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Spyrollo/mainView/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Spyrollo/mainView/tools/JsonHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Spyrollo/mainView/tools/JsonHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Spyrollo/mainView/tools/Layout.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Spyrollo/mainView/tools/Layout.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Spyrollo/mainView/tools/MathTools.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Spyrollo/mainView/tools/MathTools.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Spyrollo/mainView/tools/PdfHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Spyrollo/mainView/tools/PdfHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Spyrollo/mainView/windows/PdfOptionsFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Spyrollo/mainView/windows/RecipeChooser$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Spyrollo/mainView/windows/RecipeChooser.class" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mainView/windows/ConfirmWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mainView/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainView/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainView/Liquid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainView/Liquid.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mainView/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainView/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainView/References.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainView/References.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainView/tools/JsonHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainView/tools/JsonHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainView/tools/Layout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainView/tools/Layout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainView/tools/MathTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainView/tools/MathTools.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainView/tools/PdfHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainView/tools/PdfHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainView/windows/BasicWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainView/windows/BasicWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainView/windows/PdfOptionsFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainView/windows/PdfOptionsWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainView/windows/RecipeChooser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainView/windows/RecipeChooserWindow.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -95,19 +78,40 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/mainView/Controller.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mainView/windows/ConfirmWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="61" column="34" lean-forward="true" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
+            <state relative-caret-position="154">
+              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1313#1314#0" expanded="true" />
-                <element signature="e#1360#1361#0" expanded="true" />
-                <element signature="e#1444#1445#0" expanded="true" />
-                <element signature="e#1489#1490#0" expanded="true" />
-                <element signature="e#4826#4827#0" expanded="true" />
-                <element signature="e#4863#4864#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mainView/Controller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="271">
+              <caret line="57" column="38" selection-start-line="57" selection-start-column="38" selection-end-line="57" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1592#1593#0" expanded="true" />
+                <element signature="e#1637#1638#0" expanded="true" />
+                <element signature="e#5664#5665#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/mainView/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="290">
+              <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -176,9 +180,10 @@
         <option value="$PROJECT_DIR$/src/mainView/windows/PdfOptionsWindow.java" />
         <option value="$PROJECT_DIR$/src/mainView/windows/RecipeChooserWindow.java" />
         <option value="$PROJECT_DIR$/src/mainView/Liquid.java" />
-        <option value="$PROJECT_DIR$/src/mainView/Main.java" />
         <option value="$PROJECT_DIR$/src/mainView/References.java" />
+        <option value="$PROJECT_DIR$/src/mainView/windows/ConfirmWindow.java" />
         <option value="$PROJECT_DIR$/src/mainView/Controller.java" />
+        <option value="$PROJECT_DIR$/src/mainView/Main.java" />
       </list>
     </option>
   </component>
@@ -220,6 +225,13 @@
               <item name="Spyrollo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="mainView" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Spyrollo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spyrollo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="mainView" type="462c0819:PsiDirectoryNode" />
+              <item name="windows" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -446,12 +458,12 @@
       <workItem from="1561963388316" duration="3948000" />
       <workItem from="1561968942122" duration="1301000" />
       <workItem from="1562053694565" duration="5009000" />
-      <workItem from="1562135954905" duration="2778000" />
+      <workItem from="1562135954905" duration="5595000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106068000" />
+    <option name="totallyTimeSpent" value="108885000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -663,16 +675,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainView/windows/PdfOptionsWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="33" column="7" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="75" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mainView/windows/RecipeChooserWindow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
@@ -723,16 +725,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainView/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mainView/References.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -740,18 +732,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainView/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/mainView/windows/PdfOptionsWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="61" column="34" lean-forward="true" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
+        <state relative-caret-position="255">
+          <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1313#1314#0" expanded="true" />
-            <element signature="e#1360#1361#0" expanded="true" />
-            <element signature="e#1444#1445#0" expanded="true" />
-            <element signature="e#1489#1490#0" expanded="true" />
-            <element signature="e#4826#4827#0" expanded="true" />
-            <element signature="e#4863#4864#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mainView/windows/ConfirmWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mainView/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="57" column="38" selection-start-line="57" selection-start-column="38" selection-end-line="57" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1592#1593#0" expanded="true" />
+            <element signature="e#1637#1638#0" expanded="true" />
+            <element signature="e#5664#5665#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mainView/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

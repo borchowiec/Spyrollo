@@ -17,6 +17,7 @@ import javafx.util.Pair;
 import mainView.tools.JsonHandler;
 import mainView.tools.Layout;
 import mainView.tools.PdfHandler;
+import mainView.windows.ConfirmWindow;
 import mainView.windows.PdfOptionsWindow;
 import mainView.windows.RecipeChooserWindow;
 
@@ -301,40 +302,42 @@ public class Controller implements Initializable {
      * and set ups saved recipe.
      */
     public void loadRecipe() {
-        JsonObject json = RecipeChooserWindow.display();
-        if (json != null) {
-            titleInput.setText(json.get("title").getAsString());
-            JsonArray elements = json.getAsJsonArray("elements");
+        if (ConfirmWindow.display("Wczytaj przepis", "Czy na pewno chcesz wczytać nowy przepis? Poprzedni przepis zostanie utracony jeśli go nie zapiszesz.") == ConfirmWindow.YES) {
+            JsonObject json = RecipeChooserWindow.display();
+            if (json != null) {
+                titleInput.setText(json.get("title").getAsString());
+                JsonArray elements = json.getAsJsonArray("elements");
 
-            mainContainer.getChildren().clear();
-            mixPanel.getChildren().clear();
-            liquids.clear();
+                mainContainer.getChildren().clear();
+                mixPanel.getChildren().clear();
+                liquids.clear();
 
-            for (JsonElement el : elements) {
-                JsonObject temp = el.getAsJsonObject();
-                Liquid liquid;
-                switch (temp.get("type").getAsInt()) {
-                    case ALCOHOL:
-                        liquid = new Liquid(
-                                temp.get("name").getAsString(),
-                                temp.get("amount").getAsInt(),
-                                temp.get("percents").getAsInt(),
-                                temp.get("color").getAsString()
-                        );
-                        addAlcohol(liquid);
-                        break;
-                    case OTHER:
-                        liquid = new Liquid(
-                                temp.get("name").getAsString(),
-                                temp.get("amount").getAsInt(),
-                                0,
-                                temp.get("color").getAsString()
-                        );
-                        addOther(liquid);
-                        break;
-                    case INFO:
-                        addInfo(temp.get("content").getAsString());
-                        break;
+                for (JsonElement el : elements) {
+                    JsonObject temp = el.getAsJsonObject();
+                    Liquid liquid;
+                    switch (temp.get("type").getAsInt()) {
+                        case ALCOHOL:
+                            liquid = new Liquid(
+                                    temp.get("name").getAsString(),
+                                    temp.get("amount").getAsInt(),
+                                    temp.get("percents").getAsInt(),
+                                    temp.get("color").getAsString()
+                            );
+                            addAlcohol(liquid);
+                            break;
+                        case OTHER:
+                            liquid = new Liquid(
+                                    temp.get("name").getAsString(),
+                                    temp.get("amount").getAsInt(),
+                                    0,
+                                    temp.get("color").getAsString()
+                            );
+                            addOther(liquid);
+                            break;
+                        case INFO:
+                            addInfo(temp.get("content").getAsString());
+                            break;
+                    }
                 }
             }
         }
@@ -371,11 +374,13 @@ public class Controller implements Initializable {
      * This method resets whole recipe and set ups default settings
      */
     public void reset() {
-        titleInput.setText("Untitled");
-        liquids.clear();
-        mixPanel.getChildren().clear();
-        mainContainer.getChildren().clear();
-        refreshInfo();
+        if (ConfirmWindow.display("Nowy przepis", "Czy na pewno chcesz utworzyć nowy przepis? Poprzedni przepis zostanie utracony jeśli go nie zapiszesz.") == ConfirmWindow.YES) {
+            titleInput.setText("Untitled");
+            liquids.clear();
+            mixPanel.getChildren().clear();
+            mainContainer.getChildren().clear();
+            refreshInfo();
+        }
     }
 
     /**
