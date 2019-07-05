@@ -64,6 +64,14 @@
       </ScrollPane>
    </left>
    <center>
-      <VBox fx:id="mainContainer" prefHeight="200.0" prefWidth="100.0" spacing="5.0" BorderPane.alignment="CENTER" />
+      <ScrollPane fx:id="mainContainerScroll" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" styleClass="mainContainerScrollPane" BorderPane.alignment="CENTER">
+         <content>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <center>
+                  <VBox fx:id="mainContainer" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+         </content>
+      </ScrollPane>
    </center>
 </BorderPane>

@@ -7,10 +7,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
 import javafx.util.Pair;
@@ -22,7 +19,6 @@ import mainView.windows.PdfOptionsWindow;
 import mainView.windows.RecipeChooserWindow;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
@@ -42,6 +38,7 @@ public class Controller implements Initializable {
     public VBox liquidsList;
     public TextField titleInput;
     public Label msgLabel;
+    public ScrollPane mainContainerScroll;
     @FXML
     private VBox mainContainer;
 
@@ -57,6 +54,7 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         jsonHandler.loadLiquids(this);
+        mainContainer.minWidthProperty().bind(mainContainerScroll.widthProperty());
     }
 
     /**

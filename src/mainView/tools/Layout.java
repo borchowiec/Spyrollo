@@ -4,9 +4,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import mainView.Liquid;
 
 import java.util.Random;
@@ -32,6 +32,7 @@ public class Layout {
         panel.setSpacing(15);
         panel.setAlignment(Pos.CENTER);
         panel.getStyleClass().add("panel");
+        panel.setAlignment(Pos.CENTER_LEFT);
         return panel;
     }
 
@@ -191,6 +192,7 @@ public class Layout {
      */
     public static HBox getOtherPanel(Liquid liquid) {
         HBox panel = getPanel();
+
         panel.getChildren().addAll(
                 getArrowsPanel(),
                 getNameInput(liquid),

@@ -46,10 +46,14 @@
 }
 
 .panel {
-    -fx-padding: 5px;
+    -fx-padding: 5px 25px 5px 5px;
     -fx-border-color: #f3f3f3;
     -fx-border-width: 0 0 1px 0;
     -fx-border-radius: 0 0 0 10px;
+}
+
+.mainContainerScrollPane > .viewport {
+    -fx-background-color: #fff;
 }
 
 .panel .label {
