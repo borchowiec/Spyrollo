@@ -22,6 +22,7 @@ import mainView.windows.PdfOptionsWindow;
 import mainView.windows.RecipeChooserWindow;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
@@ -313,30 +314,34 @@ public class Controller implements Initializable {
                 liquids.clear();
 
                 for (JsonElement el : elements) {
-                    JsonObject temp = el.getAsJsonObject();
-                    Liquid liquid;
-                    switch (temp.get("type").getAsInt()) {
-                        case ALCOHOL:
-                            liquid = new Liquid(
-                                    temp.get("name").getAsString(),
-                                    temp.get("amount").getAsInt(),
-                                    temp.get("percents").getAsInt(),
-                                    temp.get("color").getAsString()
-                            );
-                            addAlcohol(liquid);
-                            break;
-                        case OTHER:
-                            liquid = new Liquid(
-                                    temp.get("name").getAsString(),
-                                    temp.get("amount").getAsInt(),
-                                    0,
-                                    temp.get("color").getAsString()
-                            );
-                            addOther(liquid);
-                            break;
-                        case INFO:
-                            addInfo(temp.get("content").getAsString());
-                            break;
+                    try {
+                        JsonObject temp = el.getAsJsonObject();
+                        Liquid liquid;
+                        switch (temp.get("type").getAsInt()) {
+                            case ALCOHOL:
+                                liquid = new Liquid(
+                                        temp.get("name").getAsString(),
+                                        temp.get("amount").getAsInt(),
+                                        temp.get("percents").getAsInt(),
+                                        temp.get("color").getAsString()
+                                );
+                                addAlcohol(liquid);
+                                break;
+                            case OTHER:
+                                liquid = new Liquid(
+                                        temp.get("name").getAsString(),
+                                        temp.get("amount").getAsInt(),
+                                        0,
+                                        temp.get("color").getAsString()
+                                );
+                                addOther(liquid);
+                                break;
+                            case INFO:
+                                addInfo(temp.get("content").getAsString());
+                                break;
+                        }
+                    } catch (NullPointerException e) {
+                        showMsg("Przepis nie wczytał się poprawnie. Plik mógł zostać uszkodzony.");
                     }
                 }
             }

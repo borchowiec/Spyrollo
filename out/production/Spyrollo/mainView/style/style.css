@@ -90,7 +90,6 @@
 }
 
 .saveBtn {
-    -fx-graphic: url('../../../img/save.png');
     -fx-background-color: #6200EE;
     -fx-text-fill: white;
     -fx-min-width: 90px;

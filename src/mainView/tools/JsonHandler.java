@@ -95,15 +95,10 @@ public class JsonHandler {
      * @param file File that you want to convert
      * @return Json object
      */
-    public static JsonObject toJsonObject(File file) {
-        try {
-            JsonParser parser = new JsonParser();
-            JsonElement jsonElement = parser.parse(new FileReader(file));
-            return jsonElement.getAsJsonObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public static JsonObject toJsonObject(File file) throws Exception {
+        JsonParser parser = new JsonParser();
+        JsonElement jsonElement = parser.parse(new FileReader(file));
+        return jsonElement.getAsJsonObject();
     }
 
     /**
@@ -111,29 +106,42 @@ public class JsonHandler {
      * @param controller Controller that has liquid list.
      */
     public void loadLiquids(Controller controller) {
-        liquidsJson = toJsonObject(new File("liquids.json"));
-        if (liquidsJson == null)
+        try {
+            liquidsJson = toJsonObject(new File("liquids.json"));
+        } catch (Exception e) {
             createBasicLiquidsJson();
+        }
 
         JsonArray array = liquidsJson.getAsJsonArray("liquids");
+        if (array == null) {
+            createBasicLiquidsJson();
+            array = liquidsJson.getAsJsonArray("liquids");
+        }
 
         for (JsonElement el : array) {
             JsonObject obj = el.getAsJsonObject();
-            switch (obj.get("type").getAsInt()) {
-                case ALCOHOL:
-                    controller.addAlcoholToLiquidList(new Liquid(
-                            obj.get("name").getAsString(),
-                            0,
-                            obj.get("percent").getAsInt(),
-                            obj.get("color").getAsString()));
-                    break;
-                case OTHER:
-                    controller.addOtherToLiquidList(new Liquid(
-                            obj.get("name").getAsString(),
-                            0,
-                            0,
-                            obj.get("color").getAsString()));
-                    break;
+            try {
+                switch (obj.get("type").getAsInt()) {
+                    case ALCOHOL:
+                        controller.addAlcoholToLiquidList(new Liquid(
+                                obj.get("name").getAsString(),
+                                0,
+                                obj.get("percent").getAsInt(),
+                                obj.get("color").getAsString()));
+                        break;
+                    case OTHER:
+                        controller.addOtherToLiquidList(new Liquid(
+                                obj.get("name").getAsString(),
+                                0,
+                                0,
+                                obj.get("color").getAsString()));
+                        break;
+                }
+            } catch (NullPointerException e) {
+                array.remove(el);
+                saveLiquids();
+                loadLiquids(controller);
+                break;
             }
         }
     }

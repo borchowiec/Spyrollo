@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import mainView.tools.JsonHandler;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Objects;
 
 /**
@@ -45,8 +46,13 @@ public class RecipeChooserWindow {
 
         File dir = new File("recipes");
         for (File f : Objects.requireNonNull(dir.listFiles()))
-            if (f.getName().contains(".spyr") && f.getName().substring(f.getName().indexOf('.') + 1).equalsIgnoreCase("spyr"))
-                listView.getItems().add(JsonHandler.toJsonObject(f));
+            if (f.getName().contains(".spyr") && f.getName().substring(f.getName().indexOf('.') + 1).equalsIgnoreCase("spyr")) {
+                try {
+                    JsonObject temp = JsonHandler.toJsonObject(f);
+                    if (temp.get("title") != null && temp.get("elements") != null)
+                        listView.getItems().add(temp);
+                } catch (Exception e) {}
+            }
 
         listView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             selectedItem = newValue;
